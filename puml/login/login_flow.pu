@@ -1,0 +1,14 @@
+@startuml
+User->login_view:入力
+login_view->api_interface:値を渡す
+api_interface->api_server:post
+api_server->api_interface:hopeにログインできたかレスポンスを返す
+api_interface->login_view:レスポンスから真理値を返す
+alt 正しいユーザ情報の場合
+    login_view->funApiKeyStoreProvider:ID、パスワード保存
+    funApiKeyStoreProvider->login_view:保存完了を待つ
+    login_view->main_view:画面推移
+else 間違った情報の場合
+    login_view->User:失敗を教える
+end
+@enduml

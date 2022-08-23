@@ -1,0 +1,14 @@
+@startuml
+package keystore_usecase{
+    database KeyStoreProvider{
+        abstract class KeyStoreInterface{
+            + Future<Map<String, dynamic>> getJson(String Key)
+            + Future<void> setJson(String key)
+        }
+    }
+    
+}
+!include puml/keystorage/key_domain.pu
+KeyStoreInterface <|-- KeyStore
+
+@enduml

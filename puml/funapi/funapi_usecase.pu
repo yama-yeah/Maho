@@ -1,0 +1,50 @@
+@startuml FunApiUsecase
+package api_usecase{
+    database FunApiManagerProvider{
+        abstract class FunApiManagerInterface{
+            + FunApiUsecase(Ref ref)
+            + void setUser(FunUserModel user)
+            + Future<Tasks> getTasks()
+            + Future<bool> login()
+        }
+    }
+    class FunApiManager{
+        //複数のプロバイダを組み合わせて動作する
+        + FunApiUsecase(Ref ref)
+        + void setUser(FunUserModel user)
+        + AsyncValue<Tasks> getTasks()
+        + Future<bool> login()
+        - StateController apiStateNotifier
+        - FunUserModel state
+        - Ref ref
+    }
+    database FunApiFutureProviders{
+
+    }
+    database FunApiUserStateProvider{
+        class FunUserModel{
+            + userid
+            + password
+        }
+    }
+    database FunApiLoginStateProvider{
+        class FunApiLoginFlag{
+            + bool flag
+        }
+    }
+    abstract class FunApiInterface{
+        + Future<bool> login(FunUserModel user)
+        + Future<Taks> getTasks(FunUserModel user)
+    }
+    
+}
+
+FunApiManager --> FunApiUserStateProvider
+FunApiManager --> FunApiLoginStateProvider
+FunApiManager -> FunApiInterface
+FunApiManagerInterface <|-- FunApiManager
+FunApiManager -> FunApiFutureProviders
+!include puml/funapi/funapi_domain.pu
+!include puml/keystorage/key_usecase.pu
+FunApiManager --> KeyStoreInterface
+@enduml

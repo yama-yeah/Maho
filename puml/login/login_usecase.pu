@@ -1,0 +1,28 @@
+@startuml
+package LoginView{
+    class LoginView{
+        + Widget build
+    }
+}
+package LoginController{
+    class LoginController{
+        - BuildContext context
+        - Ref ref
+        - FunApiInterface api
+        + LoginController(ref,context)
+        + Future<void> login(FunUserModel user)
+    }
+    class LoginControllerInterface{
+        + LoginControllerInterface(ref,context)
+        + Future<void> login(FunUserModel user)
+    }
+}
+
+LoginView -> LoginControllerInterface
+LoginController <|-- LoginControllerInterface
+!include puml/keystorage/key_usecase.pu
+LoginController --> KeyStoreInterface
+!include puml/funapi/funapi_usecase.pu
+LoginController -> FunApiUsecaseProvider
+
+@enduml

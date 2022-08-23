@@ -1,0 +1,16 @@
+@startuml funapi
+
+package domain{
+    class FunApi{
+        + Future<bool> login(FunUserModel user)
+        + Future<Tasks> getTasks(FunUserModel user)
+    }
+
+    database Api{
+
+    }
+}
+!include /home/rain/Documents/vscode/flutter/maho/puml/funapi/funapi_domain.pu!FunApiInterface
+FunApi --> Api
+FunApiInterface <|- FunApi
+@enduml

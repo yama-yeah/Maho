@@ -25,15 +25,32 @@ dependencies:
     sdk: flutter
   #ui
   glassmorphism_widgets: ^0.1.1
+  google_fonts: ^3.0.1
+  flutter_easyloading: ^3.0.5
+  cached_network_image: ^3.2.1
   #data
   drift: ^1.7.1
-  hooks_riverpod: ^1.0.4
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.8.1
+  freezed: ^2.1.0+1
+  json_serializable: ^6.3.1
+  flutter_secure_storage: ^5.0.2
+  #manage
+  hooks_riverpod: ^2.0.0-dev.9
   flutter_hooks: ^0.18.5+1
+  #routing
+  go_router: ^4.2.8
+  #service
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  drift_dev: ^1.7.0
+  build_runner: ^2.1.11
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,7 +62,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  assets:
+    - images/login_bg.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

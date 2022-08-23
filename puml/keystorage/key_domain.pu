@@ -1,0 +1,17 @@
+@startuml
+package keystore_domain{
+    database InstanceProvider{
+        class SecureStorageInstance{}
+    }
+    class KeyStore{
+        + Future<Map<String, dynamic>> getJson(String Key)
+        + Future<void> setJson(String key)
+    }
+    database SecureStorage{
+
+    }
+}
+
+SecureStorageInstance -> SecureStorage
+KeyStore -> SecureStorageInstance
+@enduml
