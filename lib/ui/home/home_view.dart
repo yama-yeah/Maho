@@ -9,7 +9,6 @@ import 'package:maho/ui/component/picsum_bg.dart';
 class HomeView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(ref.read(funApiLoggedInStateProvider));
     final screens = <Widget>[];
     return Stack(
       children: const [

@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../domain/apis/funapi/funapi_domain.dart';
 import '../../domain/data/secure_storage.dart';
+import '../../domain/states/funapi_state.dart';
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);
