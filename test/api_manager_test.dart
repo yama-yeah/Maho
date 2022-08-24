@@ -16,10 +16,12 @@ void main() {
     final apiManager = ProviderContainer().read(funApiManagerProvider);
     final user = FunUserModel(userid: 'a');
     final flag = await apiManager.updateUser(user);
+    //loggedInStateをTrueに変更する処理が含まれています。
     expect(flag, true);
     expect(await testKeyStore.getJson(''), user.toJson());
     final loggedInState = ProviderContainer().read(funApiLoggedInStateProvider);
     expect(loggedInState, true);
+    //実機で動かすとTrueなのにtestではfalse（初期値）のままです。
     final userState = ProviderContainer().read(funApiUserStateProvider);
     expect(userState, user);
   });
