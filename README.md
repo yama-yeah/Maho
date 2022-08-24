@@ -2,26 +2,18 @@
 
 manabaよりさらに進化したhope体験  
 
-## 方針
-Viewの状態管理->Hooks  
-処理の状態管理(キャッシュとったりDIしたり)->Provider  
-データのストア->Drift,firestore  
-状態の伝播  
-Hooks(View)->InputProviders(usecaseを握ってる)->Drift, firestore ,etc...(domain)->DomainProviders(streamやfuture)->CacheProviders(Viewに最適な形に加工する)->View   
-依存順  
-domain,ui->interface->usecase->entities  
-
-interface usecase = ref.watch(usecaseProvider);で依存性を逆転  
-
 ## Todo
-hopeのデータひっぱり  
-login画面実装
+データベースの実装  
+go_routerとproviderを組み合わせてリダイレクトを実装  
+azureの調子が悪いので例外処理を徹底して途中でアプリが止まらないようにする  
+ログイン画面のテキストフィールドのオートコンプリート  
 
 ## 実装済み
 apiのログインメソッド  
-Funのユーザ情報のストア  
+Funのユーザ情報のストア    
+ログイン画面の実装  
 
-
-## 目標
-Hooksを利用することでViewのテストはViewだけで行う  
-Providerからusecaseクラスを返すことでrefをusecaseクラスに持たせて実質的なシングルトンを作る  
+## 悩み
+背景画像をpicsumから取るか、アセットで用意するか  
+media queryで画面の大きさをとってきてstate providerで保存するのはできないっぽい(buildのタイミングの問題)  
+future providerはstate providerをwatchしとかないとキャッシュを更新できないのでキャッシュの仕組みから作り直す必要がありそう
