@@ -39,7 +39,7 @@ final funApiManagerProvider = Provider<FunApiManagerInterface>((ref) {
   return FunApiManager(ref, FunApi(), ref.read(keyStoreProvider));
 });
 
-final getTasksFutureProvider = FutureProvider<TasksModel>((ref) async {
+final getTasksFutureProvider = FutureProvider<RawTasksModel>((ref) async {
   print('fetching tasks');
   final user = ref.watch(funApiUserStateProvider);
   final FunApiInterface api = FunApi();

@@ -23,18 +23,18 @@ class FunApi implements FunApiInterface {
   }
 
   @override
-  Future<TasksModel> getTasks(FunUserModel user) async {
+  Future<RawTasksModel> getTasks(FunUserModel user) async {
     String body = convert.json.encode(user.toJson());
     var raw = await http.post(Uri.parse('${_url}tasks'),
         body: body, headers: _headers);
     final json = await json2map(raw);
 
-    return TasksModel.fromJson(json);
+    return RawTasksModel.fromJson(json);
   }
 }
 
 abstract class FunApiInterface {
   FunApiInterface();
   Future<bool> login(FunUserModel user);
-  Future<TasksModel> getTasks(FunUserModel user);
+  Future<RawTasksModel> getTasks(FunUserModel user);
 }

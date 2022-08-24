@@ -29,6 +29,8 @@ mixin _$CourseModel {
   @JsonKey(name: 'viewurl')
   String get viewUrl => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  bool get isNotify => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +48,9 @@ abstract class $CourseModelCopyWith<$Res> {
       @JsonKey(name: 'shortname') String shortName,
       @JsonKey(name: 'showshortname') bool isShortName,
       @JsonKey(name: 'viewurl') String viewUrl,
-      String summary});
+      String summary,
+      int id,
+      bool isNotify});
 }
 
 /// @nodoc
@@ -64,6 +68,8 @@ class _$CourseModelCopyWithImpl<$Res> implements $CourseModelCopyWith<$Res> {
     Object? isShortName = freezed,
     Object? viewUrl = freezed,
     Object? summary = freezed,
+    Object? id = freezed,
+    Object? isNotify = freezed,
   }) {
     return _then(_value.copyWith(
       fullName: fullName == freezed
@@ -86,6 +92,14 @@ class _$CourseModelCopyWithImpl<$Res> implements $CourseModelCopyWith<$Res> {
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isNotify: isNotify == freezed
+          ? _value.isNotify
+          : isNotify // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -102,7 +116,9 @@ abstract class _$$_CourseModelCopyWith<$Res>
       @JsonKey(name: 'shortname') String shortName,
       @JsonKey(name: 'showshortname') bool isShortName,
       @JsonKey(name: 'viewurl') String viewUrl,
-      String summary});
+      String summary,
+      int id,
+      bool isNotify});
 }
 
 /// @nodoc
@@ -122,6 +138,8 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
     Object? isShortName = freezed,
     Object? viewUrl = freezed,
     Object? summary = freezed,
+    Object? id = freezed,
+    Object? isNotify = freezed,
   }) {
     return _then(_$_CourseModel(
       fullName: fullName == freezed
@@ -144,6 +162,14 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isNotify: isNotify == freezed
+          ? _value.isNotify
+          : isNotify // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -156,7 +182,9 @@ class _$_CourseModel implements _CourseModel {
       @JsonKey(name: 'shortname') this.shortName = '',
       @JsonKey(name: 'showshortname') this.isShortName = true,
       @JsonKey(name: 'viewurl') this.viewUrl = 'https://hope.fun.ac.jp/my/',
-      this.summary = ''});
+      this.summary = '',
+      required this.id,
+      this.isNotify = true});
 
   factory _$_CourseModel.fromJson(Map<String, dynamic> json) =>
       _$$_CourseModelFromJson(json);
@@ -176,10 +204,15 @@ class _$_CourseModel implements _CourseModel {
   @override
   @JsonKey()
   final String summary;
+  @override
+  final int id;
+  @override
+  @JsonKey()
+  final bool isNotify;
 
   @override
   String toString() {
-    return 'CourseModel(fullName: $fullName, shortName: $shortName, isShortName: $isShortName, viewUrl: $viewUrl, summary: $summary)';
+    return 'CourseModel(fullName: $fullName, shortName: $shortName, isShortName: $isShortName, viewUrl: $viewUrl, summary: $summary, id: $id, isNotify: $isNotify)';
   }
 
   @override
@@ -192,7 +225,9 @@ class _$_CourseModel implements _CourseModel {
             const DeepCollectionEquality()
                 .equals(other.isShortName, isShortName) &&
             const DeepCollectionEquality().equals(other.viewUrl, viewUrl) &&
-            const DeepCollectionEquality().equals(other.summary, summary));
+            const DeepCollectionEquality().equals(other.summary, summary) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.isNotify, isNotify));
   }
 
   @JsonKey(ignore: true)
@@ -203,7 +238,9 @@ class _$_CourseModel implements _CourseModel {
       const DeepCollectionEquality().hash(shortName),
       const DeepCollectionEquality().hash(isShortName),
       const DeepCollectionEquality().hash(viewUrl),
-      const DeepCollectionEquality().hash(summary));
+      const DeepCollectionEquality().hash(summary),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(isNotify));
 
   @JsonKey(ignore: true)
   @override
@@ -224,7 +261,9 @@ abstract class _CourseModel implements CourseModel {
       @JsonKey(name: 'shortname') final String shortName,
       @JsonKey(name: 'showshortname') final bool isShortName,
       @JsonKey(name: 'viewurl') final String viewUrl,
-      final String summary}) = _$_CourseModel;
+      final String summary,
+      required final int id,
+      final bool isNotify}) = _$_CourseModel;
 
   factory _CourseModel.fromJson(Map<String, dynamic> json) =
       _$_CourseModel.fromJson;
@@ -244,17 +283,21 @@ abstract class _CourseModel implements CourseModel {
   @override
   String get summary;
   @override
+  int get id;
+  @override
+  bool get isNotify;
+  @override
   @JsonKey(ignore: true)
   _$$_CourseModelCopyWith<_$_CourseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
-  return _TaskModel.fromJson(json);
+RawTaskModel _$RawTaskModelFromJson(Map<String, dynamic> json) {
+  return _RawTaskModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TaskModel {
+mixin _$RawTaskModel {
   CourseModel get course => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'timesort')
@@ -262,34 +305,37 @@ mixin _$TaskModel {
   @JsonKey(name: 'timestart')
   int get startTime => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TaskModelCopyWith<TaskModel> get copyWith =>
+  $RawTaskModelCopyWith<RawTaskModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TaskModelCopyWith<$Res> {
-  factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) then) =
-      _$TaskModelCopyWithImpl<$Res>;
+abstract class $RawTaskModelCopyWith<$Res> {
+  factory $RawTaskModelCopyWith(
+          RawTaskModel value, $Res Function(RawTaskModel) then) =
+      _$RawTaskModelCopyWithImpl<$Res>;
   $Res call(
       {CourseModel course,
       String url,
       @JsonKey(name: 'timesort') int endTime,
       @JsonKey(name: 'timestart') int startTime,
-      String name});
+      String name,
+      int id});
 
   $CourseModelCopyWith<$Res> get course;
 }
 
 /// @nodoc
-class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
-  _$TaskModelCopyWithImpl(this._value, this._then);
+class _$RawTaskModelCopyWithImpl<$Res> implements $RawTaskModelCopyWith<$Res> {
+  _$RawTaskModelCopyWithImpl(this._value, this._then);
 
-  final TaskModel _value;
+  final RawTaskModel _value;
   // ignore: unused_field
-  final $Res Function(TaskModel) _then;
+  final $Res Function(RawTaskModel) _then;
 
   @override
   $Res call({
@@ -298,6 +344,7 @@ class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
     Object? endTime = freezed,
     Object? startTime = freezed,
     Object? name = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       course: course == freezed
@@ -320,6 +367,10 @@ class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -332,31 +383,34 @@ class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
-  factory _$$_TaskModelCopyWith(
-          _$_TaskModel value, $Res Function(_$_TaskModel) then) =
-      __$$_TaskModelCopyWithImpl<$Res>;
+abstract class _$$_RawTaskModelCopyWith<$Res>
+    implements $RawTaskModelCopyWith<$Res> {
+  factory _$$_RawTaskModelCopyWith(
+          _$_RawTaskModel value, $Res Function(_$_RawTaskModel) then) =
+      __$$_RawTaskModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {CourseModel course,
       String url,
       @JsonKey(name: 'timesort') int endTime,
       @JsonKey(name: 'timestart') int startTime,
-      String name});
+      String name,
+      int id});
 
   @override
   $CourseModelCopyWith<$Res> get course;
 }
 
 /// @nodoc
-class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
-    implements _$$_TaskModelCopyWith<$Res> {
-  __$$_TaskModelCopyWithImpl(
-      _$_TaskModel _value, $Res Function(_$_TaskModel) _then)
-      : super(_value, (v) => _then(v as _$_TaskModel));
+class __$$_RawTaskModelCopyWithImpl<$Res>
+    extends _$RawTaskModelCopyWithImpl<$Res>
+    implements _$$_RawTaskModelCopyWith<$Res> {
+  __$$_RawTaskModelCopyWithImpl(
+      _$_RawTaskModel _value, $Res Function(_$_RawTaskModel) _then)
+      : super(_value, (v) => _then(v as _$_RawTaskModel));
 
   @override
-  _$_TaskModel get _value => super._value as _$_TaskModel;
+  _$_RawTaskModel get _value => super._value as _$_RawTaskModel;
 
   @override
   $Res call({
@@ -365,8 +419,9 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
     Object? endTime = freezed,
     Object? startTime = freezed,
     Object? name = freezed,
+    Object? id = freezed,
   }) {
-    return _then(_$_TaskModel(
+    return _then(_$_RawTaskModel(
       course: course == freezed
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
@@ -387,6 +442,10 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -394,16 +453,17 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_TaskModel implements _TaskModel {
-  const _$_TaskModel(
+class _$_RawTaskModel implements _RawTaskModel {
+  const _$_RawTaskModel(
       {required this.course,
       this.url = 'https://hope.fun.ac.jp/my/',
       @JsonKey(name: 'timesort') this.endTime = 0,
       @JsonKey(name: 'timestart') this.startTime = 0,
-      required this.name});
+      required this.name,
+      required this.id});
 
-  factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TaskModelFromJson(json);
+  factory _$_RawTaskModel.fromJson(Map<String, dynamic> json) =>
+      _$$_RawTaskModelFromJson(json);
 
   @override
   final CourseModel course;
@@ -418,22 +478,25 @@ class _$_TaskModel implements _TaskModel {
   final int startTime;
   @override
   final String name;
+  @override
+  final int id;
 
   @override
   String toString() {
-    return 'TaskModel(course: $course, url: $url, endTime: $endTime, startTime: $startTime, name: $name)';
+    return 'RawTaskModel(course: $course, url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskModel &&
+            other is _$_RawTaskModel &&
             const DeepCollectionEquality().equals(other.course, course) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.endTime, endTime) &&
             const DeepCollectionEquality().equals(other.startTime, startTime) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @JsonKey(ignore: true)
@@ -444,7 +507,432 @@ class _$_TaskModel implements _TaskModel {
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(endTime),
       const DeepCollectionEquality().hash(startTime),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(id));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RawTaskModelCopyWith<_$_RawTaskModel> get copyWith =>
+      __$$_RawTaskModelCopyWithImpl<_$_RawTaskModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RawTaskModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RawTaskModel implements RawTaskModel {
+  const factory _RawTaskModel(
+      {required final CourseModel course,
+      final String url,
+      @JsonKey(name: 'timesort') final int endTime,
+      @JsonKey(name: 'timestart') final int startTime,
+      required final String name,
+      required final int id}) = _$_RawTaskModel;
+
+  factory _RawTaskModel.fromJson(Map<String, dynamic> json) =
+      _$_RawTaskModel.fromJson;
+
+  @override
+  CourseModel get course;
+  @override
+  String get url;
+  @override
+  @JsonKey(name: 'timesort')
+  int get endTime;
+  @override
+  @JsonKey(name: 'timestart')
+  int get startTime;
+  @override
+  String get name;
+  @override
+  int get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RawTaskModelCopyWith<_$_RawTaskModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RawTasksModel _$RawTasksModelFromJson(Map<String, dynamic> json) {
+  return _RawTasksModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RawTasksModel {
+  List<RawTaskModel> get tasks => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RawTasksModelCopyWith<RawTasksModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RawTasksModelCopyWith<$Res> {
+  factory $RawTasksModelCopyWith(
+          RawTasksModel value, $Res Function(RawTasksModel) then) =
+      _$RawTasksModelCopyWithImpl<$Res>;
+  $Res call({List<RawTaskModel> tasks, String status});
+}
+
+/// @nodoc
+class _$RawTasksModelCopyWithImpl<$Res>
+    implements $RawTasksModelCopyWith<$Res> {
+  _$RawTasksModelCopyWithImpl(this._value, this._then);
+
+  final RawTasksModel _value;
+  // ignore: unused_field
+  final $Res Function(RawTasksModel) _then;
+
+  @override
+  $Res call({
+    Object? tasks = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_value.copyWith(
+      tasks: tasks == freezed
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<RawTaskModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_RawTasksModelCopyWith<$Res>
+    implements $RawTasksModelCopyWith<$Res> {
+  factory _$$_RawTasksModelCopyWith(
+          _$_RawTasksModel value, $Res Function(_$_RawTasksModel) then) =
+      __$$_RawTasksModelCopyWithImpl<$Res>;
+  @override
+  $Res call({List<RawTaskModel> tasks, String status});
+}
+
+/// @nodoc
+class __$$_RawTasksModelCopyWithImpl<$Res>
+    extends _$RawTasksModelCopyWithImpl<$Res>
+    implements _$$_RawTasksModelCopyWith<$Res> {
+  __$$_RawTasksModelCopyWithImpl(
+      _$_RawTasksModel _value, $Res Function(_$_RawTasksModel) _then)
+      : super(_value, (v) => _then(v as _$_RawTasksModel));
+
+  @override
+  _$_RawTasksModel get _value => super._value as _$_RawTasksModel;
+
+  @override
+  $Res call({
+    Object? tasks = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_$_RawTasksModel(
+      tasks: tasks == freezed
+          ? _value._tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<RawTaskModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
+class _$_RawTasksModel implements _RawTasksModel {
+  const _$_RawTasksModel(
+      {final List<RawTaskModel> tasks = const [], this.status = 'loading'})
+      : _tasks = tasks;
+
+  factory _$_RawTasksModel.fromJson(Map<String, dynamic> json) =>
+      _$$_RawTasksModelFromJson(json);
+
+  final List<RawTaskModel> _tasks;
+  @override
+  @JsonKey()
+  List<RawTaskModel> get tasks {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tasks);
+  }
+
+  @override
+  @JsonKey()
+  final String status;
+
+  @override
+  String toString() {
+    return 'RawTasksModel(tasks: $tasks, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RawTasksModel &&
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality().equals(other.status, status));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(status));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RawTasksModelCopyWith<_$_RawTasksModel> get copyWith =>
+      __$$_RawTasksModelCopyWithImpl<_$_RawTasksModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RawTasksModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RawTasksModel implements RawTasksModel {
+  const factory _RawTasksModel(
+      {final List<RawTaskModel> tasks, final String status}) = _$_RawTasksModel;
+
+  factory _RawTasksModel.fromJson(Map<String, dynamic> json) =
+      _$_RawTasksModel.fromJson;
+
+  @override
+  List<RawTaskModel> get tasks;
+  @override
+  String get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RawTasksModelCopyWith<_$_RawTasksModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
+  return _TaskModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TaskModel {
+  String get url => throw _privateConstructorUsedError;
+  DateTime get endTime => throw _privateConstructorUsedError;
+  DateTime get startTime => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  bool get isNotify => throw _privateConstructorUsedError;
+  int get courseId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TaskModelCopyWith<TaskModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaskModelCopyWith<$Res> {
+  factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) then) =
+      _$TaskModelCopyWithImpl<$Res>;
+  $Res call(
+      {String url,
+      DateTime endTime,
+      DateTime startTime,
+      String name,
+      int id,
+      bool isNotify,
+      int courseId});
+}
+
+/// @nodoc
+class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
+  _$TaskModelCopyWithImpl(this._value, this._then);
+
+  final TaskModel _value;
+  // ignore: unused_field
+  final $Res Function(TaskModel) _then;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+    Object? endTime = freezed,
+    Object? startTime = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
+    Object? isNotify = freezed,
+    Object? courseId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTime: endTime == freezed
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: startTime == freezed
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isNotify: isNotify == freezed
+          ? _value.isNotify
+          : isNotify // ignore: cast_nullable_to_non_nullable
+              as bool,
+      courseId: courseId == freezed
+          ? _value.courseId
+          : courseId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
+  factory _$$_TaskModelCopyWith(
+          _$_TaskModel value, $Res Function(_$_TaskModel) then) =
+      __$$_TaskModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String url,
+      DateTime endTime,
+      DateTime startTime,
+      String name,
+      int id,
+      bool isNotify,
+      int courseId});
+}
+
+/// @nodoc
+class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
+    implements _$$_TaskModelCopyWith<$Res> {
+  __$$_TaskModelCopyWithImpl(
+      _$_TaskModel _value, $Res Function(_$_TaskModel) _then)
+      : super(_value, (v) => _then(v as _$_TaskModel));
+
+  @override
+  _$_TaskModel get _value => super._value as _$_TaskModel;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+    Object? endTime = freezed,
+    Object? startTime = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
+    Object? isNotify = freezed,
+    Object? courseId = freezed,
+  }) {
+    return _then(_$_TaskModel(
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTime: endTime == freezed
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: startTime == freezed
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isNotify: isNotify == freezed
+          ? _value.isNotify
+          : isNotify // ignore: cast_nullable_to_non_nullable
+              as bool,
+      courseId: courseId == freezed
+          ? _value.courseId
+          : courseId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TaskModel implements _TaskModel {
+  const _$_TaskModel(
+      {required this.url,
+      required this.endTime,
+      required this.startTime,
+      required this.name,
+      required this.id,
+      this.isNotify = true,
+      required this.courseId});
+
+  factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TaskModelFromJson(json);
+
+  @override
+  final String url;
+  @override
+  final DateTime endTime;
+  @override
+  final DateTime startTime;
+  @override
+  final String name;
+  @override
+  final int id;
+  @override
+  @JsonKey()
+  final bool isNotify;
+  @override
+  final int courseId;
+
+  @override
+  String toString() {
+    return 'TaskModel(url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id, isNotify: $isNotify, courseId: $courseId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TaskModel &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.endTime, endTime) &&
+            const DeepCollectionEquality().equals(other.startTime, startTime) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.isNotify, isNotify) &&
+            const DeepCollectionEquality().equals(other.courseId, courseId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(endTime),
+      const DeepCollectionEquality().hash(startTime),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(isNotify),
+      const DeepCollectionEquality().hash(courseId));
 
   @JsonKey(ignore: true)
   @override
@@ -461,190 +949,33 @@ class _$_TaskModel implements _TaskModel {
 
 abstract class _TaskModel implements TaskModel {
   const factory _TaskModel(
-      {required final CourseModel course,
-      final String url,
-      @JsonKey(name: 'timesort') final int endTime,
-      @JsonKey(name: 'timestart') final int startTime,
-      required final String name}) = _$_TaskModel;
+      {required final String url,
+      required final DateTime endTime,
+      required final DateTime startTime,
+      required final String name,
+      required final int id,
+      final bool isNotify,
+      required final int courseId}) = _$_TaskModel;
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$_TaskModel.fromJson;
 
   @override
-  CourseModel get course;
-  @override
   String get url;
   @override
-  @JsonKey(name: 'timesort')
-  int get endTime;
+  DateTime get endTime;
   @override
-  @JsonKey(name: 'timestart')
-  int get startTime;
+  DateTime get startTime;
   @override
   String get name;
   @override
+  int get id;
+  @override
+  bool get isNotify;
+  @override
+  int get courseId;
+  @override
   @JsonKey(ignore: true)
   _$$_TaskModelCopyWith<_$_TaskModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TasksModel _$TasksModelFromJson(Map<String, dynamic> json) {
-  return _TasksModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TasksModel {
-  List<TaskModel> get tasks => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $TasksModelCopyWith<TasksModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TasksModelCopyWith<$Res> {
-  factory $TasksModelCopyWith(
-          TasksModel value, $Res Function(TasksModel) then) =
-      _$TasksModelCopyWithImpl<$Res>;
-  $Res call({List<TaskModel> tasks, String status});
-}
-
-/// @nodoc
-class _$TasksModelCopyWithImpl<$Res> implements $TasksModelCopyWith<$Res> {
-  _$TasksModelCopyWithImpl(this._value, this._then);
-
-  final TasksModel _value;
-  // ignore: unused_field
-  final $Res Function(TasksModel) _then;
-
-  @override
-  $Res call({
-    Object? tasks = freezed,
-    Object? status = freezed,
-  }) {
-    return _then(_value.copyWith(
-      tasks: tasks == freezed
-          ? _value.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<TaskModel>,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$$_TasksModelCopyWith<$Res>
-    implements $TasksModelCopyWith<$Res> {
-  factory _$$_TasksModelCopyWith(
-          _$_TasksModel value, $Res Function(_$_TasksModel) then) =
-      __$$_TasksModelCopyWithImpl<$Res>;
-  @override
-  $Res call({List<TaskModel> tasks, String status});
-}
-
-/// @nodoc
-class __$$_TasksModelCopyWithImpl<$Res> extends _$TasksModelCopyWithImpl<$Res>
-    implements _$$_TasksModelCopyWith<$Res> {
-  __$$_TasksModelCopyWithImpl(
-      _$_TasksModel _value, $Res Function(_$_TasksModel) _then)
-      : super(_value, (v) => _then(v as _$_TasksModel));
-
-  @override
-  _$_TasksModel get _value => super._value as _$_TasksModel;
-
-  @override
-  $Res call({
-    Object? tasks = freezed,
-    Object? status = freezed,
-  }) {
-    return _then(_$_TasksModel(
-      tasks: tasks == freezed
-          ? _value._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<TaskModel>,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_TasksModel implements _TasksModel {
-  const _$_TasksModel(
-      {final List<TaskModel> tasks = const [], this.status = 'loading'})
-      : _tasks = tasks;
-
-  factory _$_TasksModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TasksModelFromJson(json);
-
-  final List<TaskModel> _tasks;
-  @override
-  @JsonKey()
-  List<TaskModel> get tasks {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tasks);
-  }
-
-  @override
-  @JsonKey()
-  final String status;
-
-  @override
-  String toString() {
-    return 'TasksModel(tasks: $tasks, status: $status)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TasksModel &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
-            const DeepCollectionEquality().equals(other.status, status));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_tasks),
-      const DeepCollectionEquality().hash(status));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_TasksModelCopyWith<_$_TasksModel> get copyWith =>
-      __$$_TasksModelCopyWithImpl<_$_TasksModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_TasksModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TasksModel implements TasksModel {
-  const factory _TasksModel(
-      {final List<TaskModel> tasks, final String status}) = _$_TasksModel;
-
-  factory _TasksModel.fromJson(Map<String, dynamic> json) =
-      _$_TasksModel.fromJson;
-
-  @override
-  List<TaskModel> get tasks;
-  @override
-  String get status;
-  @override
-  @JsonKey(ignore: true)
-  _$$_TasksModelCopyWith<_$_TasksModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

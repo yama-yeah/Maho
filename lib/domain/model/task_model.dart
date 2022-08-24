@@ -15,6 +15,8 @@ abstract class CourseModel with _$CourseModel {
     @Default('https://hope.fun.ac.jp/my/')
         String viewUrl,
     @Default('') String summary,
+    required int id,
+    @Default(true) bool isNotify,
     //@JsonKey(name: 'startdate') @Default(0) int startDate,
     //@JsonKey(name: 'enddate') @Default(0) int endDate,
   }) = _CourseModel;
@@ -23,26 +25,42 @@ abstract class CourseModel with _$CourseModel {
 }
 
 @freezed
-abstract class TaskModel with _$TaskModel {
+abstract class RawTaskModel with _$RawTaskModel {
   @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-  const factory TaskModel({
+  const factory RawTaskModel({
     required CourseModel course,
     @Default('https://hope.fun.ac.jp/my/') String url,
     @JsonKey(name: 'timesort') @Default(0) int endTime,
     @JsonKey(name: 'timestart') @Default(0) int startTime,
     required String name,
-  }) = _TaskModel;
-  factory TaskModel.fromJson(Map<String, dynamic> json) =>
-      _$TaskModelFromJson(json);
+    required int id,
+  }) = _RawTaskModel;
+  factory RawTaskModel.fromJson(Map<String, dynamic> json) =>
+      _$RawTaskModelFromJson(json);
 }
 
 @freezed
-abstract class TasksModel with _$TasksModel {
+abstract class RawTasksModel with _$RawTasksModel {
   @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-  const factory TasksModel({
-    @Default([]) List<TaskModel> tasks,
+  const factory RawTasksModel({
+    @Default([]) List<RawTaskModel> tasks,
     @Default('loading') String status,
-  }) = _TasksModel;
-  factory TasksModel.fromJson(Map<String, dynamic> json) =>
-      _$TasksModelFromJson(json);
+  }) = _RawTasksModel;
+  factory RawTasksModel.fromJson(Map<String, dynamic> json) =>
+      _$RawTasksModelFromJson(json);
+}
+
+@freezed
+abstract class TaskModel with _$TaskModel {
+  const factory TaskModel({
+    required String url,
+    required DateTime endTime,
+    required DateTime startTime,
+    required String name,
+    required int id,
+    @Default(true) bool isNotify,
+    required int courseId,
+  }) = _TaskModel;
+  factory TaskModel.fromJson(Map<String, dynamic> json) =>
+      _$TaskModelFromJson(json);
 }

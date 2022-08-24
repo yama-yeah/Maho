@@ -20,3 +20,9 @@ final appTitleStyleProvider = Provider(
     //color: Colors.white,
   ),
 );
+
+final appBarTextStyleProvider = Provider((ref) => GoogleFonts.getFont(
+      'Caveat',
+      color: Colors.white.withOpacity(0.5),
+      fontSize: 32,
+    ));

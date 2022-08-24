@@ -21,7 +21,3 @@ class HomeView extends HookConsumerWidget {
     );
   }
 }
-
-final tasksCha = Provider((ref) {
-  final tasks = ref.watch(getTasksFutureProvider);
-});

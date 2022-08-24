@@ -43,7 +43,7 @@ void main() {
 
 class TestApi extends FunApiInterface {
   @override
-  Future<TasksModel> getTasks(FunUserModel user) {
+  Future<RawTasksModel> getTasks(FunUserModel user) {
     // TODO: implement getTasks
     throw UnimplementedError();
   }
