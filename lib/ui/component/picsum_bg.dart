@@ -4,7 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:maho/app/usecase/picsum_usecase.dart';
+import 'package:maho/domain/apis/picsum/picsum_usecase.dart';
 import 'package:maho/domain/apis/picsum/picsum.dart';
 import 'package:maho/domain/model/picsum_model.dart';
 import 'package:maho/domain/states/picsum_state.dart';

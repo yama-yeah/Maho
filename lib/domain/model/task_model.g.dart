@@ -47,9 +47,11 @@ _$_TasksModel _$$_TasksModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => TaskModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      status: json['status'] as String? ?? 'loading',
     );
 
 Map<String, dynamic> _$$_TasksModelToJson(_$_TasksModel instance) =>
     <String, dynamic>{
       'tasks': instance.tasks.map((e) => e.toJson()).toList(),
+      'status': instance.status,
     };

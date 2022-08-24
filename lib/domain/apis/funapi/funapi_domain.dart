@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:maho/domain/model/task_model.dart';
 //import 'package:intl/intl.dart';
-import '../../../app/entities/service_util.dart';
+import '../../../utils/service_util.dart';
 import '../../data/secure_storage.dart';
 import '../../model/fun_model.dart';
 
@@ -11,20 +11,6 @@ class FunApi implements FunApiInterface {
   final _url = 'https://fun-student-api.azurewebsites.net/';
   final Map<String, String> _headers = {'content-type': 'application/json'};
   FunApi() : super();
-  /*
-  @override
-  void setUser(FunUserModel user) {
-    ref.read(funApiStateProvider.notifier).state = user;
-  }
-
-  @override
-  Future<void> resetUser() async {
-    final store = ref.read(funApiKeyStoreProvider);
-    final userJson = await store.getJson('key');
-    final model = FunUserModel.fromJson(userJson);
-    setUser(model);
-  }*/
-
   @override
   Future<bool> login(FunUserModel user) async {
     //final user = ref.read(funApiStateProvider);
@@ -42,6 +28,7 @@ class FunApi implements FunApiInterface {
     var raw = await http.post(Uri.parse('${_url}tasks'),
         body: body, headers: _headers);
     final json = await json2map(raw);
+
     return TasksModel.fromJson(json);
   }
 }

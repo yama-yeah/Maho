@@ -495,6 +495,7 @@ TasksModel _$TasksModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TasksModel {
   List<TaskModel> get tasks => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -507,7 +508,7 @@ abstract class $TasksModelCopyWith<$Res> {
   factory $TasksModelCopyWith(
           TasksModel value, $Res Function(TasksModel) then) =
       _$TasksModelCopyWithImpl<$Res>;
-  $Res call({List<TaskModel> tasks});
+  $Res call({List<TaskModel> tasks, String status});
 }
 
 /// @nodoc
@@ -521,12 +522,17 @@ class _$TasksModelCopyWithImpl<$Res> implements $TasksModelCopyWith<$Res> {
   @override
   $Res call({
     Object? tasks = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       tasks: tasks == freezed
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<TaskModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -538,7 +544,7 @@ abstract class _$$_TasksModelCopyWith<$Res>
           _$_TasksModel value, $Res Function(_$_TasksModel) then) =
       __$$_TasksModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<TaskModel> tasks});
+  $Res call({List<TaskModel> tasks, String status});
 }
 
 /// @nodoc
@@ -554,12 +560,17 @@ class __$$_TasksModelCopyWithImpl<$Res> extends _$TasksModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = freezed,
+    Object? status = freezed,
   }) {
     return _then(_$_TasksModel(
       tasks: tasks == freezed
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<TaskModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -568,7 +579,8 @@ class __$$_TasksModelCopyWithImpl<$Res> extends _$TasksModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
 class _$_TasksModel implements _TasksModel {
-  const _$_TasksModel({final List<TaskModel> tasks = const []})
+  const _$_TasksModel(
+      {final List<TaskModel> tasks = const [], this.status = 'loading'})
       : _tasks = tasks;
 
   factory _$_TasksModel.fromJson(Map<String, dynamic> json) =>
@@ -583,8 +595,12 @@ class _$_TasksModel implements _TasksModel {
   }
 
   @override
+  @JsonKey()
+  final String status;
+
+  @override
   String toString() {
-    return 'TasksModel(tasks: $tasks)';
+    return 'TasksModel(tasks: $tasks, status: $status)';
   }
 
   @override
@@ -592,13 +608,16 @@ class _$_TasksModel implements _TasksModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TasksModel &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -614,13 +633,16 @@ class _$_TasksModel implements _TasksModel {
 }
 
 abstract class _TasksModel implements TasksModel {
-  const factory _TasksModel({final List<TaskModel> tasks}) = _$_TasksModel;
+  const factory _TasksModel(
+      {final List<TaskModel> tasks, final String status}) = _$_TasksModel;
 
   factory _TasksModel.fromJson(Map<String, dynamic> json) =
       _$_TasksModel.fromJson;
 
   @override
   List<TaskModel> get tasks;
+  @override
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$_TasksModelCopyWith<_$_TasksModel> get copyWith =>

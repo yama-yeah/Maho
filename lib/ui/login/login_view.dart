@@ -5,23 +5,28 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:maho/app/controller/login_controller.dart';
+import 'package:maho/ui/login/login_controller.dart';
 import 'package:maho/domain/const/text_style.dart';
 import 'package:maho/domain/model/fun_model.dart';
-import 'package:maho/interface/secure_storage_provider.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../domain/apis/funapi/funapi.dart';
+import '../../domain/apis/funapi/funapi_domain.dart';
 import '../../domain/data/secure_storage.dart';
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);
-
   @override
   Widget build(context, ref) {
     final userIdController = useTextEditingController();
     final passwordController = useTextEditingController();
     final loginController = LoginController(context, ref);
+    void login() {
+      final user = FunUserModel(
+          userid: userIdController.text,
+          password: passwordController.text); //usecaseに渡すデータ
+      loginController.login(user);
+    }
+
     return Stack(
       children: [
         Scaffold(
@@ -71,6 +76,7 @@ class LoginView extends HookConsumerWidget {
                 child: GlassContainer(
                   width: 250,
                   child: TextField(
+                    textInputAction: TextInputAction.next,
                     controller: userIdController,
                   ),
                 ),
@@ -80,18 +86,15 @@ class LoginView extends HookConsumerWidget {
                 child: GlassContainer(
                   width: 250,
                   child: TextField(
+                    onEditingComplete: login,
                     controller: passwordController,
                   ),
                 ),
               ),
               GlassButton(
-                  child: const GlassText('Login'),
-                  onPressed: () {
-                    final user = FunUserModel(
-                        userid: userIdController.text,
-                        password: passwordController.text); //usecaseに渡すデータ
-                    loginController.login(user);
-                  }),
+                child: const GlassText('Login'),
+                onPressed: login,
+              ),
               Container(),
             ],
           ),

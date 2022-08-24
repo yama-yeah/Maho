@@ -4,7 +4,7 @@ import 'package:maho/domain/model/picsum_model.dart';
 import 'package:maho/domain/states/picsum_state.dart';
 import 'package:path/path.dart';
 
-import '../../domain/apis/picsum/picsum.dart';
+import 'picsum.dart';
 
 abstract class PicsumManagerInterface {
   PicsumManagerInterface(Ref ref);

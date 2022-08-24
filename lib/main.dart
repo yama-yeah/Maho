@@ -17,7 +17,7 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final GoRouter _router = GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/login',
       routes: <GoRoute>[
         GoRoute(
           path: '/login',

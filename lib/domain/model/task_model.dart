@@ -41,6 +41,7 @@ abstract class TasksModel with _$TasksModel {
   @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
   const factory TasksModel({
     @Default([]) List<TaskModel> tasks,
+    @Default('loading') String status,
   }) = _TasksModel;
   factory TasksModel.fromJson(Map<String, dynamic> json) =>
       _$TasksModelFromJson(json);
