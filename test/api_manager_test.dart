@@ -9,7 +9,7 @@ import 'package:maho/domain/states/funapi_state.dart';
 import 'package:mockito/mockito.dart';
 
 class Listener extends Mock {
-  void call(dynamic previous, dynamic value);
+  void call(dynamic? previous, dynamic value);
 }
 
 void main() {
@@ -19,29 +19,31 @@ void main() {
   });
   test('login success test', () async {
     final loggedInListner = Listener();
-    ProviderContainer().listen(
+    final container = ProviderContainer();
+    //addTearDown(container.dispose);
+    container.listen(
       funApiLoggedInStateProvider,
       loggedInListner,
       fireImmediately: true,
     );
     verify(loggedInListner(null, false)).called(1);
-    final apiManager = ProviderContainer().read(funApiManagerProvider);
+    final apiManager = container.read(funApiManagerProvider);
     final user = FunUserModel(userid: 'a');
     final flag = await apiManager.updateUser(user);
     //loggedInStateをTrueに変更する処理が含まれています。
     expect(flag, true);
     expect(await testKeyStore.getJson(''), user.toJson());
-    /*
-    final loggedInState = ProviderContainer().read(funApiLoggedInStateProvider);
-    expect(loggedInState, true);
-    実機で動かすとTrueなのにtestではfalse（初期値）のままです。
-    */
+
+    //final loggedInState = container.read(funApiLoggedInStateProvider);
+    //expect(loggedInState, true);
+    //実機で動かすとTrueなのにtestではfalse（初期値）のままです。
+
     verify(loggedInListner(false, true)).called(1);
     //公式サイトをもとにやってみてもうまく行きませんでした；；
   });
 }
 
-class TestApi extends FunApiInterface {
+class TestApi implements FunApiInterface {
   @override
   Future<RawTasksModel> getTasks(FunUserModel user) {
     // TODO: implement getTasks

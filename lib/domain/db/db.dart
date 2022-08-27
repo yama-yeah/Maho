@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:maho/domain/db/course/course_table.dart';
 import 'package:maho/domain/db/task/task_table.dart';
 import 'package:maho/domain/model/task_model.dart';
 import 'dart:io';
@@ -8,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 part 'db.g.dart';
 
-@DriftDatabase(tables: [Tasks])
+@DriftDatabase(tables: [Tasks, Courses])
 class MyDatabase extends _$MyDatabase
     implements TasksDatabaseInterface, CoursesDatabaseInterface {
   MyDatabase() : super(_openConnection());

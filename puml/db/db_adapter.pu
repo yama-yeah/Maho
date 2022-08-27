@@ -1,0 +1,26 @@
+@startuml
+package db_usecase{
+    abstract class CoursesDaoInterface{
+        + CoursesModel getCorses()
+        + CourseModel getCourse(int id)
+        + void updateTask(TaskModel task)
+        + void deleteTask(int id)
+        + void insertTask(TaskModel task)
+    }
+    abstract class TasksDaoInterface{
+        + TasksModel getTasks()
+        + TaskModel getTask(int id)
+        + void updateTask(TaskModel task)
+        + void deleteTask(int id)
+        + void insertTask(TaskModel task)
+    }
+}
+
+
+package db_domain{
+    !include puml/db/db.pu
+}
+CoursesDaoInterface <|- CoursesDao
+TasksDaoInterface <|- TasksDao
+
+@enduml

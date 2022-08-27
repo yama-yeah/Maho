@@ -11,10 +11,10 @@ _$_CourseModel _$$_CourseModelFromJson(Map<String, dynamic> json) =>
       fullName: json['fullname'] as String? ?? '',
       shortName: json['shortname'] as String? ?? '',
       isShortName: json['showshortname'] as bool? ?? true,
-      viewUrl: json['viewurl'] as String? ?? 'https://hope.fun.ac.jp/my/',
+      url: json['viewurl'] as String? ?? 'https://hope.fun.ac.jp/my/',
       summary: json['summary'] as String? ?? '',
       id: json['id'] as int,
-      isNotify: json['isNotify'] as bool? ?? true,
+      isTaskNotify: json['isTaskNotify'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$_CourseModelToJson(_$_CourseModel instance) =>
@@ -22,10 +22,10 @@ Map<String, dynamic> _$$_CourseModelToJson(_$_CourseModel instance) =>
       'fullname': instance.fullName,
       'shortname': instance.shortName,
       'showshortname': instance.isShortName,
-      'viewurl': instance.viewUrl,
+      'viewurl': instance.url,
       'summary': instance.summary,
       'id': instance.id,
-      'isNotify': instance.isNotify,
+      'isTaskNotify': instance.isTaskNotify,
     };
 
 _$_RawTaskModel _$$_RawTaskModelFromJson(Map<String, dynamic> json) =>
@@ -65,8 +65,8 @@ Map<String, dynamic> _$$_RawTasksModelToJson(_$_RawTasksModel instance) =>
 
 _$_TaskModel _$$_TaskModelFromJson(Map<String, dynamic> json) => _$_TaskModel(
       url: json['url'] as String,
-      endTime: DateTime.parse(json['endTime'] as String),
-      startTime: DateTime.parse(json['startTime'] as String),
+      endTime: json['endTime'] as int,
+      startTime: json['startTime'] as int,
       name: json['name'] as String,
       id: json['id'] as int,
       isNotify: json['isNotify'] as bool? ?? true,
@@ -76,10 +76,25 @@ _$_TaskModel _$$_TaskModelFromJson(Map<String, dynamic> json) => _$_TaskModel(
 Map<String, dynamic> _$$_TaskModelToJson(_$_TaskModel instance) =>
     <String, dynamic>{
       'url': instance.url,
-      'endTime': instance.endTime.toIso8601String(),
-      'startTime': instance.startTime.toIso8601String(),
+      'endTime': instance.endTime,
+      'startTime': instance.startTime,
       'name': instance.name,
       'id': instance.id,
       'isNotify': instance.isNotify,
       'courseId': instance.courseId,
+    };
+
+_$_TasksModel _$$_TasksModelFromJson(Map<String, dynamic> json) =>
+    _$_TasksModel(
+      status: json['status'] as String? ?? 'loading',
+      tasks: (json['tasks'] as List<dynamic>?)
+              ?.map((e) => TaskModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$_TasksModelToJson(_$_TasksModel instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'tasks': instance.tasks,
     };

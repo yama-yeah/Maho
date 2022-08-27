@@ -4,7 +4,7 @@ package api_usecase{
         abstract class FunApiManagerInterface{
             + FunApiUsecase(Ref ref)
             + void setUser(FunUserModel user)
-            + Future<Tasks> getTasks()
+            + updateTasks()
             + Future<bool> login()
         }
     }
@@ -12,7 +12,7 @@ package api_usecase{
         //複数のプロバイダを組み合わせて動作する
         + FunApiUsecase(Ref ref)
         + void setUser(FunUserModel user)
-        + AsyncValue<Tasks> getTasks()
+        + updateTasks()
         + Future<bool> login()
         - StateController apiStateNotifier
         - FunUserModel state
@@ -36,9 +36,9 @@ package api_usecase{
         + Future<bool> login(FunUserModel user)
         + Future<Taks> getTasks(FunUserModel user)
     }
-    
-}
 
+}
+!include puml/db/db_adapter.pu
 FunApiManager --> FunApiUserStateProvider
 FunApiManager --> FunApiLoginStateProvider
 FunApiManager -> FunApiInterface
@@ -46,5 +46,7 @@ FunApiManagerInterface <|-- FunApiManager
 FunApiManager -> FunApiFutureProviders
 !include puml/funapi/funapi_domain.pu
 !include puml/keystorage/key_usecase.pu
+CoursesDaoInterface <-- FunApiManager
+TasksDaoInterface <-- FunApiManager
 FunApiManager --> KeyStoreInterface
 @enduml

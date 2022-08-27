@@ -6,7 +6,7 @@ import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:maho/ui/login/login_controller.dart';
-import 'package:maho/domain/const/text_style.dart';
+import 'package:maho/const/text_style.dart';
 import 'package:maho/domain/model/fun_model.dart';
 import 'package:go_router/go_router.dart';
 

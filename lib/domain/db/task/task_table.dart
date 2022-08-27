@@ -5,8 +5,8 @@ import 'package:maho/domain/model/task_model.dart';
 class Tasks extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
-  DateTimeColumn get endTime => dateTime()();
-  DateTimeColumn get startTime => dateTime()();
+  IntColumn get endTime => integer()();
+  IntColumn get startTime => integer()();
   TextColumn get url => text()();
   IntColumn get courseId => integer()();
 }

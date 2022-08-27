@@ -1,0 +1,22 @@
+@startuml
+
+class CoursesDao{}
+class TasksDao{}
+database TasksTable{
+
+}
+database CoursesTable{
+}
+class MyDatabase{
+
+}
+
+
+
+
+CoursesDao -> MyDatabase
+TasksDao --> MyDatabase
+MyDatabase -> CoursesTable
+MyDatabase -> TasksTable
+
+@enduml

@@ -27,10 +27,10 @@ mixin _$CourseModel {
   @JsonKey(name: 'showshortname')
   bool get isShortName => throw _privateConstructorUsedError;
   @JsonKey(name: 'viewurl')
-  String get viewUrl => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
-  bool get isNotify => throw _privateConstructorUsedError;
+  bool get isTaskNotify => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,10 +47,10 @@ abstract class $CourseModelCopyWith<$Res> {
       {@JsonKey(name: 'fullname') String fullName,
       @JsonKey(name: 'shortname') String shortName,
       @JsonKey(name: 'showshortname') bool isShortName,
-      @JsonKey(name: 'viewurl') String viewUrl,
+      @JsonKey(name: 'viewurl') String url,
       String summary,
       int id,
-      bool isNotify});
+      bool isTaskNotify});
 }
 
 /// @nodoc
@@ -66,10 +66,10 @@ class _$CourseModelCopyWithImpl<$Res> implements $CourseModelCopyWith<$Res> {
     Object? fullName = freezed,
     Object? shortName = freezed,
     Object? isShortName = freezed,
-    Object? viewUrl = freezed,
+    Object? url = freezed,
     Object? summary = freezed,
     Object? id = freezed,
-    Object? isNotify = freezed,
+    Object? isTaskNotify = freezed,
   }) {
     return _then(_value.copyWith(
       fullName: fullName == freezed
@@ -84,9 +84,9 @@ class _$CourseModelCopyWithImpl<$Res> implements $CourseModelCopyWith<$Res> {
           ? _value.isShortName
           : isShortName // ignore: cast_nullable_to_non_nullable
               as bool,
-      viewUrl: viewUrl == freezed
-          ? _value.viewUrl
-          : viewUrl // ignore: cast_nullable_to_non_nullable
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
       summary: summary == freezed
           ? _value.summary
@@ -96,9 +96,9 @@ class _$CourseModelCopyWithImpl<$Res> implements $CourseModelCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      isNotify: isNotify == freezed
-          ? _value.isNotify
-          : isNotify // ignore: cast_nullable_to_non_nullable
+      isTaskNotify: isTaskNotify == freezed
+          ? _value.isTaskNotify
+          : isTaskNotify // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -115,10 +115,10 @@ abstract class _$$_CourseModelCopyWith<$Res>
       {@JsonKey(name: 'fullname') String fullName,
       @JsonKey(name: 'shortname') String shortName,
       @JsonKey(name: 'showshortname') bool isShortName,
-      @JsonKey(name: 'viewurl') String viewUrl,
+      @JsonKey(name: 'viewurl') String url,
       String summary,
       int id,
-      bool isNotify});
+      bool isTaskNotify});
 }
 
 /// @nodoc
@@ -136,10 +136,10 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? shortName = freezed,
     Object? isShortName = freezed,
-    Object? viewUrl = freezed,
+    Object? url = freezed,
     Object? summary = freezed,
     Object? id = freezed,
-    Object? isNotify = freezed,
+    Object? isTaskNotify = freezed,
   }) {
     return _then(_$_CourseModel(
       fullName: fullName == freezed
@@ -154,9 +154,9 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
           ? _value.isShortName
           : isShortName // ignore: cast_nullable_to_non_nullable
               as bool,
-      viewUrl: viewUrl == freezed
-          ? _value.viewUrl
-          : viewUrl // ignore: cast_nullable_to_non_nullable
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
       summary: summary == freezed
           ? _value.summary
@@ -166,9 +166,9 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      isNotify: isNotify == freezed
-          ? _value.isNotify
-          : isNotify // ignore: cast_nullable_to_non_nullable
+      isTaskNotify: isTaskNotify == freezed
+          ? _value.isTaskNotify
+          : isTaskNotify // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -176,15 +176,15 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CourseModel implements _CourseModel {
+class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
   const _$_CourseModel(
       {@JsonKey(name: 'fullname') this.fullName = '',
       @JsonKey(name: 'shortname') this.shortName = '',
       @JsonKey(name: 'showshortname') this.isShortName = true,
-      @JsonKey(name: 'viewurl') this.viewUrl = 'https://hope.fun.ac.jp/my/',
+      @JsonKey(name: 'viewurl') this.url = 'https://hope.fun.ac.jp/my/',
       this.summary = '',
       required this.id,
-      this.isNotify = true});
+      this.isTaskNotify = true});
 
   factory _$_CourseModel.fromJson(Map<String, dynamic> json) =>
       _$$_CourseModelFromJson(json);
@@ -200,7 +200,7 @@ class _$_CourseModel implements _CourseModel {
   final bool isShortName;
   @override
   @JsonKey(name: 'viewurl')
-  final String viewUrl;
+  final String url;
   @override
   @JsonKey()
   final String summary;
@@ -208,11 +208,25 @@ class _$_CourseModel implements _CourseModel {
   final int id;
   @override
   @JsonKey()
-  final bool isNotify;
+  final bool isTaskNotify;
 
   @override
-  String toString() {
-    return 'CourseModel(fullName: $fullName, shortName: $shortName, isShortName: $isShortName, viewUrl: $viewUrl, summary: $summary, id: $id, isNotify: $isNotify)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CourseModel(fullName: $fullName, shortName: $shortName, isShortName: $isShortName, url: $url, summary: $summary, id: $id, isTaskNotify: $isTaskNotify)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CourseModel'))
+      ..add(DiagnosticsProperty('fullName', fullName))
+      ..add(DiagnosticsProperty('shortName', shortName))
+      ..add(DiagnosticsProperty('isShortName', isShortName))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('summary', summary))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('isTaskNotify', isTaskNotify));
   }
 
   @override
@@ -224,10 +238,11 @@ class _$_CourseModel implements _CourseModel {
             const DeepCollectionEquality().equals(other.shortName, shortName) &&
             const DeepCollectionEquality()
                 .equals(other.isShortName, isShortName) &&
-            const DeepCollectionEquality().equals(other.viewUrl, viewUrl) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.summary, summary) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.isNotify, isNotify));
+            const DeepCollectionEquality()
+                .equals(other.isTaskNotify, isTaskNotify));
   }
 
   @JsonKey(ignore: true)
@@ -237,10 +252,10 @@ class _$_CourseModel implements _CourseModel {
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(shortName),
       const DeepCollectionEquality().hash(isShortName),
-      const DeepCollectionEquality().hash(viewUrl),
+      const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(summary),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(isNotify));
+      const DeepCollectionEquality().hash(isTaskNotify));
 
   @JsonKey(ignore: true)
   @override
@@ -260,10 +275,10 @@ abstract class _CourseModel implements CourseModel {
       {@JsonKey(name: 'fullname') final String fullName,
       @JsonKey(name: 'shortname') final String shortName,
       @JsonKey(name: 'showshortname') final bool isShortName,
-      @JsonKey(name: 'viewurl') final String viewUrl,
+      @JsonKey(name: 'viewurl') final String url,
       final String summary,
       required final int id,
-      final bool isNotify}) = _$_CourseModel;
+      final bool isTaskNotify}) = _$_CourseModel;
 
   factory _CourseModel.fromJson(Map<String, dynamic> json) =
       _$_CourseModel.fromJson;
@@ -279,16 +294,167 @@ abstract class _CourseModel implements CourseModel {
   bool get isShortName;
   @override
   @JsonKey(name: 'viewurl')
-  String get viewUrl;
+  String get url;
   @override
   String get summary;
   @override
   int get id;
   @override
-  bool get isNotify;
+  bool get isTaskNotify;
   @override
   @JsonKey(ignore: true)
   _$$_CourseModelCopyWith<_$_CourseModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CoursesModel {
+  Set<CourseModel> get courses => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CoursesModelCopyWith<CoursesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CoursesModelCopyWith<$Res> {
+  factory $CoursesModelCopyWith(
+          CoursesModel value, $Res Function(CoursesModel) then) =
+      _$CoursesModelCopyWithImpl<$Res>;
+  $Res call({Set<CourseModel> courses, String status});
+}
+
+/// @nodoc
+class _$CoursesModelCopyWithImpl<$Res> implements $CoursesModelCopyWith<$Res> {
+  _$CoursesModelCopyWithImpl(this._value, this._then);
+
+  final CoursesModel _value;
+  // ignore: unused_field
+  final $Res Function(CoursesModel) _then;
+
+  @override
+  $Res call({
+    Object? courses = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_value.copyWith(
+      courses: courses == freezed
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as Set<CourseModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_CoursesModeCopyWith<$Res>
+    implements $CoursesModelCopyWith<$Res> {
+  factory _$$_CoursesModeCopyWith(
+          _$_CoursesMode value, $Res Function(_$_CoursesMode) then) =
+      __$$_CoursesModeCopyWithImpl<$Res>;
+  @override
+  $Res call({Set<CourseModel> courses, String status});
+}
+
+/// @nodoc
+class __$$_CoursesModeCopyWithImpl<$Res>
+    extends _$CoursesModelCopyWithImpl<$Res>
+    implements _$$_CoursesModeCopyWith<$Res> {
+  __$$_CoursesModeCopyWithImpl(
+      _$_CoursesMode _value, $Res Function(_$_CoursesMode) _then)
+      : super(_value, (v) => _then(v as _$_CoursesMode));
+
+  @override
+  _$_CoursesMode get _value => super._value as _$_CoursesMode;
+
+  @override
+  $Res call({
+    Object? courses = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_$_CoursesMode(
+      courses: courses == freezed
+          ? _value._courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as Set<CourseModel>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CoursesMode with DiagnosticableTreeMixin implements _CoursesMode {
+  const _$_CoursesMode(
+      {final Set<CourseModel> courses = const {}, this.status = 'loading'})
+      : _courses = courses;
+
+  final Set<CourseModel> _courses;
+  @override
+  @JsonKey()
+  Set<CourseModel> get courses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_courses);
+  }
+
+  @override
+  @JsonKey()
+  final String status;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CoursesModel(courses: $courses, status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CoursesModel'))
+      ..add(DiagnosticsProperty('courses', courses))
+      ..add(DiagnosticsProperty('status', status));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CoursesMode &&
+            const DeepCollectionEquality().equals(other._courses, _courses) &&
+            const DeepCollectionEquality().equals(other.status, status));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_courses),
+      const DeepCollectionEquality().hash(status));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CoursesModeCopyWith<_$_CoursesMode> get copyWith =>
+      __$$_CoursesModeCopyWithImpl<_$_CoursesMode>(this, _$identity);
+}
+
+abstract class _CoursesMode implements CoursesModel {
+  const factory _CoursesMode(
+      {final Set<CourseModel> courses, final String status}) = _$_CoursesMode;
+
+  @override
+  Set<CourseModel> get courses;
+  @override
+  String get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CoursesModeCopyWith<_$_CoursesMode> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -453,7 +619,7 @@ class __$$_RawTaskModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_RawTaskModel implements _RawTaskModel {
+class _$_RawTaskModel with DiagnosticableTreeMixin implements _RawTaskModel {
   const _$_RawTaskModel(
       {required this.course,
       this.url = 'https://hope.fun.ac.jp/my/',
@@ -482,8 +648,21 @@ class _$_RawTaskModel implements _RawTaskModel {
   final int id;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RawTaskModel(course: $course, url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RawTaskModel'))
+      ..add(DiagnosticsProperty('course', course))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('endTime', endTime))
+      ..add(DiagnosticsProperty('startTime', startTime))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -647,7 +826,7 @@ class __$$_RawTasksModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_RawTasksModel implements _RawTasksModel {
+class _$_RawTasksModel with DiagnosticableTreeMixin implements _RawTasksModel {
   const _$_RawTasksModel(
       {final List<RawTaskModel> tasks = const [], this.status = 'loading'})
       : _tasks = tasks;
@@ -668,8 +847,17 @@ class _$_RawTasksModel implements _RawTasksModel {
   final String status;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RawTasksModel(tasks: $tasks, status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RawTasksModel'))
+      ..add(DiagnosticsProperty('tasks', tasks))
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -725,8 +913,8 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TaskModel {
   String get url => throw _privateConstructorUsedError;
-  DateTime get endTime => throw _privateConstructorUsedError;
-  DateTime get startTime => throw _privateConstructorUsedError;
+  int get endTime => throw _privateConstructorUsedError;
+  int get startTime => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   bool get isNotify => throw _privateConstructorUsedError;
@@ -744,8 +932,8 @@ abstract class $TaskModelCopyWith<$Res> {
       _$TaskModelCopyWithImpl<$Res>;
   $Res call(
       {String url,
-      DateTime endTime,
-      DateTime startTime,
+      int endTime,
+      int startTime,
       String name,
       int id,
       bool isNotify,
@@ -778,11 +966,11 @@ class _$TaskModelCopyWithImpl<$Res> implements $TaskModelCopyWith<$Res> {
       endTime: endTime == freezed
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       startTime: startTime == freezed
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -811,8 +999,8 @@ abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
   @override
   $Res call(
       {String url,
-      DateTime endTime,
-      DateTime startTime,
+      int endTime,
+      int startTime,
       String name,
       int id,
       bool isNotify,
@@ -847,11 +1035,11 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
       endTime: endTime == freezed
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       startTime: startTime == freezed
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -874,7 +1062,7 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskModel implements _TaskModel {
+class _$_TaskModel extends _TaskModel with DiagnosticableTreeMixin {
   const _$_TaskModel(
       {required this.url,
       required this.endTime,
@@ -882,7 +1070,8 @@ class _$_TaskModel implements _TaskModel {
       required this.name,
       required this.id,
       this.isNotify = true,
-      required this.courseId});
+      required this.courseId})
+      : super._();
 
   factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
       _$$_TaskModelFromJson(json);
@@ -890,9 +1079,9 @@ class _$_TaskModel implements _TaskModel {
   @override
   final String url;
   @override
-  final DateTime endTime;
+  final int endTime;
   @override
-  final DateTime startTime;
+  final int startTime;
   @override
   final String name;
   @override
@@ -904,8 +1093,22 @@ class _$_TaskModel implements _TaskModel {
   final int courseId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'TaskModel(url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id, isNotify: $isNotify, courseId: $courseId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TaskModel'))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('endTime', endTime))
+      ..add(DiagnosticsProperty('startTime', startTime))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('isNotify', isNotify))
+      ..add(DiagnosticsProperty('courseId', courseId));
   }
 
   @override
@@ -947,15 +1150,16 @@ class _$_TaskModel implements _TaskModel {
   }
 }
 
-abstract class _TaskModel implements TaskModel {
+abstract class _TaskModel extends TaskModel {
   const factory _TaskModel(
       {required final String url,
-      required final DateTime endTime,
-      required final DateTime startTime,
+      required final int endTime,
+      required final int startTime,
       required final String name,
       required final int id,
       final bool isNotify,
       required final int courseId}) = _$_TaskModel;
+  const _TaskModel._() : super._();
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$_TaskModel.fromJson;
@@ -963,9 +1167,9 @@ abstract class _TaskModel implements TaskModel {
   @override
   String get url;
   @override
-  DateTime get endTime;
+  int get endTime;
   @override
-  DateTime get startTime;
+  int get startTime;
   @override
   String get name;
   @override
@@ -977,5 +1181,173 @@ abstract class _TaskModel implements TaskModel {
   @override
   @JsonKey(ignore: true)
   _$$_TaskModelCopyWith<_$_TaskModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TasksModel _$TasksModelFromJson(Map<String, dynamic> json) {
+  return _TasksModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TasksModel {
+  String get status => throw _privateConstructorUsedError;
+  List<TaskModel> get tasks => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TasksModelCopyWith<TasksModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TasksModelCopyWith<$Res> {
+  factory $TasksModelCopyWith(
+          TasksModel value, $Res Function(TasksModel) then) =
+      _$TasksModelCopyWithImpl<$Res>;
+  $Res call({String status, List<TaskModel> tasks});
+}
+
+/// @nodoc
+class _$TasksModelCopyWithImpl<$Res> implements $TasksModelCopyWith<$Res> {
+  _$TasksModelCopyWithImpl(this._value, this._then);
+
+  final TasksModel _value;
+  // ignore: unused_field
+  final $Res Function(TasksModel) _then;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? tasks = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      tasks: tasks == freezed
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<TaskModel>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_TasksModelCopyWith<$Res>
+    implements $TasksModelCopyWith<$Res> {
+  factory _$$_TasksModelCopyWith(
+          _$_TasksModel value, $Res Function(_$_TasksModel) then) =
+      __$$_TasksModelCopyWithImpl<$Res>;
+  @override
+  $Res call({String status, List<TaskModel> tasks});
+}
+
+/// @nodoc
+class __$$_TasksModelCopyWithImpl<$Res> extends _$TasksModelCopyWithImpl<$Res>
+    implements _$$_TasksModelCopyWith<$Res> {
+  __$$_TasksModelCopyWithImpl(
+      _$_TasksModel _value, $Res Function(_$_TasksModel) _then)
+      : super(_value, (v) => _then(v as _$_TasksModel));
+
+  @override
+  _$_TasksModel get _value => super._value as _$_TasksModel;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? tasks = freezed,
+  }) {
+    return _then(_$_TasksModel(
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      tasks: tasks == freezed
+          ? _value._tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<TaskModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TasksModel with DiagnosticableTreeMixin implements _TasksModel {
+  const _$_TasksModel(
+      {this.status = 'loading', final List<TaskModel> tasks = const []})
+      : _tasks = tasks;
+
+  factory _$_TasksModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TasksModelFromJson(json);
+
+  @override
+  @JsonKey()
+  final String status;
+  final List<TaskModel> _tasks;
+  @override
+  @JsonKey()
+  List<TaskModel> get tasks {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tasks);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksModel(status: $status, tasks: $tasks)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TasksModel'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('tasks', tasks));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TasksModel &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other._tasks, _tasks));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(_tasks));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TasksModelCopyWith<_$_TasksModel> get copyWith =>
+      __$$_TasksModelCopyWithImpl<_$_TasksModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TasksModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TasksModel implements TasksModel {
+  const factory _TasksModel(
+      {final String status, final List<TaskModel> tasks}) = _$_TasksModel;
+
+  factory _TasksModel.fromJson(Map<String, dynamic> json) =
+      _$_TasksModel.fromJson;
+
+  @override
+  String get status;
+  @override
+  List<TaskModel> get tasks;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TasksModelCopyWith<_$_TasksModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
