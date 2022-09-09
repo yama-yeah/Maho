@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 import 'package:maho/domain/model/task_model.dart';
 //import 'package:intl/intl.dart';
 import '../../../utils/service_util.dart';
@@ -8,18 +9,24 @@ import '../../data/secure_storage.dart';
 import '../../model/fun_model.dart';
 
 class FunApi implements FunApiInterface {
-  final _url = 'https://fun-student-api.azurewebsites.net/';
+  final _url = 'https://fun-hope-api.azurewebsites.net/';
   final Map<String, String> _headers = {'content-type': 'application/json'};
   FunApi() : super();
   @override
-  Future<bool> login(FunUserModel user) async {
+  Future<String> login(FunUserModel user) async {
     //final user = ref.read(funApiStateProvider);
     String body = convert.json.encode(user.toJson());
     print(body);
-    var raw = await http.post(Uri.parse('${_url}login'),
-        body: body, headers: _headers);
-    print(raw);
-    return await json2map(raw)['status'] == 'success';
+
+    try {
+      var raw = await http.post(Uri.parse('${_url}login'),
+          body: body, headers: _headers);
+      print(raw);
+      return json2map(raw)['status'];
+    } catch (e) {
+      print(e);
+      return 'error';
+    }
   }
 
   @override
@@ -29,8 +36,9 @@ class FunApi implements FunApiInterface {
     try {
       final raw = await http.post(Uri.parse('${_url}tasks'),
           body: body, headers: _headers);
-      json = await json2map(raw);
+      json = json2map(raw);
     } catch (e) {
+      Logger().e(e);
       json['status'] = 'error';
     }
 
@@ -40,6 +48,6 @@ class FunApi implements FunApiInterface {
 
 abstract class FunApiInterface {
   FunApiInterface();
-  Future<bool> login(FunUserModel user);
+  Future<String> login(FunUserModel user);
   Future<RawTasksModel> getTasks(FunUserModel user);
 }

@@ -176,7 +176,7 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
+class _$_CourseModel extends _CourseModel with DiagnosticableTreeMixin {
   const _$_CourseModel(
       {@JsonKey(name: 'fullname') this.fullName = '',
       @JsonKey(name: 'shortname') this.shortName = '',
@@ -184,7 +184,8 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
       @JsonKey(name: 'viewurl') this.url = 'https://hope.fun.ac.jp/my/',
       this.summary = '',
       required this.id,
-      this.isTaskNotify = true});
+      this.isTaskNotify = true})
+      : super._();
 
   factory _$_CourseModel.fromJson(Map<String, dynamic> json) =>
       _$$_CourseModelFromJson(json);
@@ -270,7 +271,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
   }
 }
 
-abstract class _CourseModel implements CourseModel {
+abstract class _CourseModel extends CourseModel {
   const factory _CourseModel(
       {@JsonKey(name: 'fullname') final String fullName,
       @JsonKey(name: 'shortname') final String shortName,
@@ -279,6 +280,7 @@ abstract class _CourseModel implements CourseModel {
       final String summary,
       required final int id,
       final bool isTaskNotify}) = _$_CourseModel;
+  const _CourseModel._() : super._();
 
   factory _CourseModel.fromJson(Map<String, dynamic> json) =
       _$_CourseModel.fromJson;

@@ -14,6 +14,7 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
   final Value<int> startTime;
   final Value<String> url;
   final Value<int> courseId;
+  final Value<bool> isNotify;
   const TasksCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -21,6 +22,7 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
     this.startTime = const Value.absent(),
     this.url = const Value.absent(),
     this.courseId = const Value.absent(),
+    this.isNotify = const Value.absent(),
   });
   TasksCompanion.insert({
     this.id = const Value.absent(),
@@ -29,11 +31,13 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
     required int startTime,
     required String url,
     required int courseId,
+    required bool isNotify,
   })  : name = Value(name),
         endTime = Value(endTime),
         startTime = Value(startTime),
         url = Value(url),
-        courseId = Value(courseId);
+        courseId = Value(courseId),
+        isNotify = Value(isNotify);
   static Insertable<TaskModel> custom({
     Expression<int>? id,
     Expression<String>? name,
@@ -41,6 +45,7 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
     Expression<int>? startTime,
     Expression<String>? url,
     Expression<int>? courseId,
+    Expression<bool>? isNotify,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -49,6 +54,7 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
       if (startTime != null) 'start_time': startTime,
       if (url != null) 'url': url,
       if (courseId != null) 'course_id': courseId,
+      if (isNotify != null) 'is_notify': isNotify,
     });
   }
 
@@ -58,7 +64,8 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
       Value<int>? endTime,
       Value<int>? startTime,
       Value<String>? url,
-      Value<int>? courseId}) {
+      Value<int>? courseId,
+      Value<bool>? isNotify}) {
     return TasksCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -66,6 +73,7 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
       startTime: startTime ?? this.startTime,
       url: url ?? this.url,
       courseId: courseId ?? this.courseId,
+      isNotify: isNotify ?? this.isNotify,
     );
   }
 
@@ -90,6 +98,9 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
     if (courseId.present) {
       map['course_id'] = Variable<int>(courseId.value);
     }
+    if (isNotify.present) {
+      map['is_notify'] = Variable<bool>(isNotify.value);
+    }
     return map;
   }
 
@@ -101,7 +112,8 @@ class TasksCompanion extends UpdateCompanion<TaskModel> {
           ..write('endTime: $endTime, ')
           ..write('startTime: $startTime, ')
           ..write('url: $url, ')
-          ..write('courseId: $courseId')
+          ..write('courseId: $courseId, ')
+          ..write('isNotify: $isNotify')
           ..write(')'))
         .toString();
   }
@@ -144,9 +156,16 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, TaskModel> {
   late final GeneratedColumn<int> courseId = GeneratedColumn<int>(
       'course_id', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  final VerificationMeta _isNotifyMeta = const VerificationMeta('isNotify');
+  @override
+  late final GeneratedColumn<bool> isNotify = GeneratedColumn<bool>(
+      'is_notify', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints: 'CHECK (is_notify IN (0, 1))');
   @override
   List<GeneratedColumn> get $columns =>
-      [id, name, endTime, startTime, url, courseId];
+      [id, name, endTime, startTime, url, courseId, isNotify];
   @override
   String get aliasedName => _alias ?? 'tasks';
   @override
@@ -189,6 +208,12 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, TaskModel> {
     } else if (isInserting) {
       context.missing(_courseIdMeta);
     }
+    if (data.containsKey('is_notify')) {
+      context.handle(_isNotifyMeta,
+          isNotify.isAcceptableOrUnknown(data['is_notify']!, _isNotifyMeta));
+    } else if (isInserting) {
+      context.missing(_isNotifyMeta);
+    }
     return context;
   }
 
@@ -208,6 +233,8 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, TaskModel> {
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       id: attachedDatabase.options.types
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      isNotify: attachedDatabase.options.types
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_notify'])!,
       courseId: attachedDatabase.options.types
           .read(DriftSqlType.int, data['${effectivePrefix}course_id'])!,
     );

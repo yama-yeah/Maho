@@ -15,10 +15,10 @@ class LoginController implements LoginControllerInterface {
   final BuildContext context;
   LoginController(this.context, this.ref);
   @override
-  void login(FunUserModel user) {
+  void login(FunUserModel user) async {
     final funApiManager = ref.read(funApiManagerProvider);
     //EasyLoading.show(status: 'Logging...');
-    funApiManager.updateUser(user).then((value) {
+    await funApiManager.updateUser(user).then((value) {
       //ココらへんはアプリの実動作で確認する
       if (value) {
         EasyLoading.showSuccess('Success');

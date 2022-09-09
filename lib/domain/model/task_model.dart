@@ -9,7 +9,7 @@ part 'task_model.g.dart';
 
 //userのid、passwordを保持するためのモデルです。
 @freezed
-class CourseModel with _$CourseModel {
+class CourseModel with _$CourseModel implements d.Insertable<CourseModel> {
   //このクラスは、DBの状態を保持するクラスです。
   const factory CourseModel({
     @JsonKey(name: 'fullname') @Default('') String fullName,
@@ -24,6 +24,19 @@ class CourseModel with _$CourseModel {
   }) = _CourseModel;
   factory CourseModel.fromJson(Map<String, dynamic> json) =>
       _$CourseModelFromJson(json);
+  const CourseModel._();
+  @override
+  Map<String, d.Expression> toColumns(bool nullToAbsent) {
+    return CoursesCompanion(
+      id: d.Value(id),
+      fullName: d.Value(fullName),
+      shortName: d.Value(shortName),
+      url: d.Value(url),
+      summary: d.Value(summary),
+      isTaskNotify: d.Value(isTaskNotify),
+      isShortName: d.Value(isShortName),
+    ).toColumns(nullToAbsent);
+  }
 }
 
 @freezed
@@ -71,10 +84,11 @@ class TaskModel with _$TaskModel implements d.Insertable<TaskModel> {
     @Default(true) bool isNotify,
     required int courseId,
   }) = _TaskModel;
+
   factory TaskModel.fromJson(Map<String, dynamic> json) =>
       _$TaskModelFromJson(json);
-  const TaskModel._();
   //@With<d.Insertable<TaskModel>>()
+  const TaskModel._();
   @override
   Map<String, d.Expression> toColumns(bool nullToAbsent) {
     return TasksCompanion(
@@ -84,6 +98,7 @@ class TaskModel with _$TaskModel implements d.Insertable<TaskModel> {
       startTime: d.Value(startTime),
       url: d.Value(url),
       courseId: d.Value(courseId),
+      isNotify: d.Value(isNotify),
     ).toColumns(nullToAbsent);
   }
 }

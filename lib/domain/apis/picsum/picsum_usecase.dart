@@ -6,43 +6,26 @@ import 'package:path/path.dart';
 
 import 'picsum.dart';
 
-abstract class PicsumManagerInterface {
-  PicsumManagerInterface(Ref ref);
-  AsyncValue<Decoration> getImage();
-}
-
-class PicsumManager implements PicsumManagerInterface {
-  final WidgetRef ref;
-  final BuildContext context;
-  PicsumManager(this.context, this.ref);
-  @override
-  AsyncValue<Decoration> getImage() {
-    final width = MediaQuery.of(context).size.width.toInt();
-    final height = MediaQuery.of(context).size.height.toInt();
-    return ref.watch(getImageFutureProvider);
-  }
-}
-
-final getImageFutureProvider = FutureProvider<Decoration>((ref) async {
-  final PicsumInterface picsum = Picsum();
-  final state = ref.watch(picsumStateProvider);
-  final bytes = await picsum.getImageBytes(state.width, state.height);
-
-  final decoration = BoxDecoration(
-    image: DecorationImage(
-      image: Image.memory(bytes).image,
-      fit: BoxFit.cover,
-    ),
-  );
-  print('fetched');
-  return decoration;
+final getImageFutureProvider = FutureProvider.family(
+  (ref, Size size) async {
+    final PicsumInterface picsum = Picsum();
+    final bytes =
+        await picsum.getImageBytes(size.width.toInt(), size.height.toInt());
+    return bytes;
+  },
+);
+final bgImageProvider = Provider.family((ref, Size size) {
+  final image =
+      ref.watch(getImageFutureProvider.call(size)).when(data: (bytes) {
+    return Image.memory(bytes).image;
+  }, error: (err, stk) {
+    return Image.asset('images/login_bg.jpg').image;
+  }, loading: () {
+    return Image.asset('images/login_bg.jpg').image;
+  });
+  return BoxDecoration(
+      image: DecorationImage(
+    fit: BoxFit.cover,
+    image: image,
+  ));
 });
-/*
-final getImageMethodProvider = Provider((ref) {
-  final futureProvider = ref.watch(getImageFutureProvider);
-  return (context) {
-    final a = futureProvider.when(
-        data: (data) {}, error: (err, stk) {}, loading: () {});
-  };
-});
-*/

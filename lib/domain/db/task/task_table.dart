@@ -9,4 +9,5 @@ class Tasks extends Table {
   IntColumn get startTime => integer()();
   TextColumn get url => text()();
   IntColumn get courseId => integer()();
+  BoolColumn get isNotify => boolean()();
 }
