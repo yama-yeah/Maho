@@ -33,6 +33,7 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, ref) {
     //initialize process is here!!!
     final funApiManager = ref.watch(funApiManagerProvider);
+    //このProviderはApiのユーザ情報を管理しているのでここで初期化します
     final initialRoute = useState('/login');
     useEffect(() {
       if (funApiManager.isLoaded) {
@@ -43,7 +44,8 @@ class MyApp extends HookConsumerWidget {
         FlutterNativeSplash.remove();
       }
       return null;
-    }, [funApiManager.isLoaded]);
+    }, [funApiManager]);
+    //initialized!!!
 
     final GoRouter router = GoRouter(
       initialLocation: initialRoute.value,

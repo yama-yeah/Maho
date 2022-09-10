@@ -15,78 +15,85 @@ class LoginView extends HookConsumerWidget {
     final userIdController = useTextEditingController();
     final passwordController = useTextEditingController();
     final loginController = LoginController(context, ref);
+    final isLogging = useState(false);
     void login() {
       final user = FunUserModel(
           userid: userIdController.text,
           password: passwordController.text); //usecaseに渡すデータ
-      loginController.login(user);
+      loginController.login(
+        user,
+        isLogging,
+      );
     }
 
     final hiddenPassword = useState(true);
-
-    return Stack(
-      children: [
-        Scaffold(
-            body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/login_bg.jpg'),
-              fit: BoxFit.cover,
+    final stack = [
+      Scaffold(
+          body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/login_bg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+      )),
+      Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Colors.transparent,
+        appBar: GlassAppBar(
+          title: GlassText(
+            'Login',
+            style: GoogleFonts.getFont(
+              'Caveat',
+              color: Colors.white.withOpacity(0.5),
+              fontSize: 32,
             ),
           ),
-        )),
-        Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.transparent,
-          appBar: GlassAppBar(
-            title: GlassText(
-              'Login',
-              style: GoogleFonts.getFont(
-                'Caveat',
-                color: Colors.white.withOpacity(0.5),
-                fontSize: 32,
-              ),
-            ),
-          ),
-          body: AutofillGroup(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (bounds) => const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xff00ff28),
-                        Color(0xfc18e6b4),
-                        //Color(0xfa197cd7),
-                        Color(0xf9aeebff)
-                      ],
-                    ).createShader(
-                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                    ),
-                    child: Text("Maho", style: ref.read(appTitleStyleProvider)),
+        ),
+        body: AutofillGroup(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ShaderMask(
+                  blendMode: BlendMode.srcIn,
+                  shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xff00ff28),
+                      Color(0xfc18e6b4),
+                      //Color(0xfa197cd7),
+                      Color(0xf9aeebff)
+                    ],
+                  ).createShader(
+                    Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: GlassContainer(
-                      width: 250,
+                  child: Text("Maho", style: ref.read(appTitleStyleProvider)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: GlassContainer(
+                    width: 250,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: TextField(
                         autofillHints: const [AutofillHints.username],
                         textInputAction: TextInputAction.next,
                         controller: userIdController,
                         decoration:
-                            const InputDecoration(label: GlassText('　userid')),
+                            const InputDecoration(label: GlassText('userid')),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                    child: GlassContainer(
-                      width: 250,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                  child: GlassContainer(
+                    width: 250,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: TextField(
                         autofillHints: const [AutofillHints.password],
                         obscureText: hiddenPassword.value,
@@ -101,21 +108,31 @@ class LoginView extends HookConsumerWidget {
                               hiddenPassword.value = !hiddenPassword.value;
                             },
                           ),
-                          label: const GlassText('　password'),
+                          label: const GlassText('password'),
                         ),
                       ),
                     ),
                   ),
-                  GlassButton(
-                    onPressed: login,
-                    child: const GlassText('Login'),
-                  ),
-                ],
-              ),
+                ),
+                GlassButton(
+                  onPressed: login,
+                  child: const GlassText('Login'),
+                ),
+              ],
             ),
           ),
-        )
-      ],
+        ),
+      ),
+    ];
+    if (isLogging.value) {
+      stack.add(Scaffold(
+        body: Container(),
+        backgroundColor: const Color.fromARGB(154, 0, 0, 1),
+      ));
+    }
+
+    return Stack(
+      children: stack,
     );
   }
 }

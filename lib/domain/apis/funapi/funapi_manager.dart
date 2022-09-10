@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:maho/domain/apis/funapi/funapi_domain.dart';
 import 'package:maho/domain/data/secure_storage.dart';
 import 'package:maho/domain/db/course/course_dao.dart';
@@ -93,6 +94,7 @@ class FunApiManager implements FunApiManagerInterface {
         FunUserModel.fromJson(await _keyStore.getJson('key'));
     final isLoggedIn = _prefs.getBool('isLoggedIn');
     if (isLoggedIn != null) {
+      Logger().i('This Account is Logge In!');
       _ref.read(funApiLoggedInStateProvider.notifier).state = isLoggedIn;
     }
   }
