@@ -10,6 +10,7 @@ import 'package:maho/domain/states/funapi_state.dart';
 import 'package:maho/ui/home/home_view.dart';
 import 'package:maho/ui/login/login_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maho/ui/settings/notification_setting/notification_setting_view.dart';
 import 'package:maho/ui/task/detail_task/detail_of_task_view.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:tuple/tuple.dart';
@@ -86,7 +87,9 @@ class MyApp extends HookConsumerWidget {
     //initialized!!!
 
     final GoRouter router = GoRouter(
-      initialLocation: initialRoute.value,
+      initialLocation: '/notificationSetting',
+
+      //initialRoute.value,
       routes: <GoRoute>[
         GoRoute(
           path: '/login',
@@ -102,8 +105,12 @@ class MyApp extends HookConsumerWidget {
         ),
         GoRoute(
             path: '/detailOfTask',
-            builder: (context, state) =>
-                DetailOfTaskView(state.extra as Tuple2<TaskModel, CourseModel>))
+            builder: (context, state) => DetailOfTaskView(
+                state.extra as Tuple2<TaskModel, CourseModel>)),
+        GoRoute(
+          path: '/notificationSetting',
+          builder: (context, state) => NotificationSettingView(),
+        ),
       ],
       redirect: (state) {
         final loggedInState = ref.read(funApiLoggedInStateProvider);

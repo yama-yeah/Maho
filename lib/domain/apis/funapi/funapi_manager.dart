@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:maho/domain/apis/funapi/funapi_domain.dart';
 import 'package:maho/domain/data/secure_storage.dart';
+import 'package:maho/domain/data/shared_pref.dart';
 import 'package:maho/domain/db/course/course_dao.dart';
 import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/fun_model.dart';
@@ -104,7 +105,7 @@ class FunApiManager implements FunApiManagerInterface {
 }
 
 final futureFunApiManagerProvider = FutureProvider((ref) async {
-  final prefs = await SharedPreferences.getInstance();
+  final prefs = await ref.watch(getPrefInstanceProvider.future);
   final manager = FunApiManager(
     ref,
     FunApi(),

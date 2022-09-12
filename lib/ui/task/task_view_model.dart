@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -31,6 +32,7 @@ class TaskViewModel implements TaskViewModelInterface {
 final tasksState = StateProvider<List<Tuple2<TaskModel, CourseModel>>>(
     (ref) => ref.watch(dbStreamProvider).when(data: (data) {
           Logger().i('loaded tasks $data');
+
           return data;
         }, error: (err, stk) {
           return [];
