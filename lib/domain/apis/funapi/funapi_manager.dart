@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class FunApiManagerInterface {
   final isLoaded = false;
   Future<bool> updateUser(FunUserModel user);
-  void updateDB();
+  Future<void> updateDB();
 }
 
 class FakeFunApiManagaer implements FunApiManagerInterface {
@@ -21,7 +21,7 @@ class FakeFunApiManagaer implements FunApiManagerInterface {
   bool get isLoaded => false;
 
   @override
-  void updateDB() {}
+  Future<void> updateDB() async {}
 
   @override
   Future<bool> updateUser(FunUserModel user) async {
@@ -49,9 +49,11 @@ class FunApiManager implements FunApiManagerInterface {
   bool get isLoaded => true;
 
   @override
-  void updateDB() async {
+  Future<void> updateDB() async {
+    Logger().wtf('now updating');
     final user = _ref.read(funApiUserStateProvider);
     final rawTasks = await _api.getTasks(user);
+
     //courseこみのtaskを取得
     for (var rawTask in rawTasks.tasks) {
       final task = raw2task(rawTask);
@@ -62,6 +64,7 @@ class FunApiManager implements FunApiManagerInterface {
     }
     updateApiHealthState(rawTasks.status);
     updateLoggedInState(rawTasks.status);
+    Logger().wtf('Complete update DB');
   }
 
   @override
@@ -94,7 +97,7 @@ class FunApiManager implements FunApiManagerInterface {
         FunUserModel.fromJson(await _keyStore.getJson('key'));
     final isLoggedIn = _prefs.getBool('isLoggedIn');
     if (isLoggedIn != null) {
-      Logger().i('This Account is Logge In!');
+      Logger().i('This Account is Logged In!');
       _ref.read(funApiLoggedInStateProvider.notifier).state = isLoggedIn;
     }
   }

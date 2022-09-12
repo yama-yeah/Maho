@@ -18,8 +18,8 @@ class TaskViewModel implements TaskViewModelInterface {
   final List<Tuple2<TaskModel, CourseModel>> state;
   TaskViewModel(this.ref, this.state, this.tasksDao, this.api);
   @override
-  void updateTasks() {
-    api.updateDB();
+  Future<void> updateTasks() async {
+    await api.updateDB();
   }
 
   @override
@@ -40,7 +40,7 @@ final tasksState = StateProvider<List<Tuple2<TaskModel, CourseModel>>>(
         }));
 
 abstract class TaskViewModelInterface {
-  void updateTasks(); //タスクの情報を更新
+  Future<void> updateTasks(); //タスクの情報を更新
   List<Widget> getTaskTiles();
 }
 

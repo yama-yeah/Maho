@@ -14,24 +14,28 @@ import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/ui/component/task_list_tile.dart';
 import 'package:maho/ui/task/task_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../const/text_style.dart';
 
 class TaskView extends HookConsumerWidget {
+  final _refreshController = RefreshController(initialRefresh: false);
+  void init(Function init) async {
+    await init();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(taskViewModelProvider);
     useEffect(() {
-      Logger().i('init task view');
-      viewModel.updateTasks();
+      init(viewModel.updateTasks);
+      return null;
     }, []);
-
     //Logger().i('tasks view watch that ${viewModel.state}');
     Set<Widget> tiles = {};
     for (var item in viewModel.state) {
       tiles.add(TaskListTile(item.item1, item.item2));
     }
-    //Logger().wtf(viewModel.state.length);
     final appBarTextStyle = ref.read(appBarTextStyleProvider);
     return Scaffold(
       appBar: GlassAppBar(
@@ -40,7 +44,16 @@ class TaskView extends HookConsumerWidget {
           style: appBarTextStyle,
         ),
       ),
-      body: ListView(children: tiles.toList()),
+      body: SmartRefresher(
+        enablePullDown: true,
+        header: const WaterDropHeader(),
+        controller: _refreshController,
+        child: ListView(children: tiles.toList()),
+        onRefresh: () async {
+          await viewModel.updateTasks();
+          _refreshController.refreshCompleted();
+        },
+      ),
       backgroundColor: Colors.transparent,
     );
   }

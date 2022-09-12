@@ -36,6 +36,7 @@ class FunApi implements FunApiInterface {
     try {
       final raw = await http.post(Uri.parse('${_url}tasks'),
           body: body, headers: _headers);
+      Logger().i('fetched');
       json = json2map(raw);
     } catch (e) {
       Logger().e(e);
