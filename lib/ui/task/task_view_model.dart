@@ -1,15 +1,10 @@
-import 'dart:io';
-
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
-import 'package:maho/domain/apis/funapi/funapi_domain.dart';
 import 'package:maho/domain/apis/funapi/funapi_manager.dart';
 import 'package:maho/domain/db/db.dart';
 import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/task_model.dart';
-import 'package:maho/domain/states/funapi_state.dart';
 import 'package:maho/utils/notification_util.dart';
 import 'package:tuple/tuple.dart';
 

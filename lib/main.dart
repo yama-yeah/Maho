@@ -2,21 +2,18 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:maho/domain/apis/funapi/funapi_manager.dart';
-import 'package:maho/domain/db/db.dart';
-import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/domain/states/funapi_state.dart';
 import 'package:maho/ui/home/home_view.dart';
 import 'package:maho/ui/login/login_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:maho/ui/settings/notification_setting/notification_setting_view.dart';
 import 'package:maho/ui/task/detail_task/detail_of_task_view.dart';
 import 'package:tuple/tuple.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

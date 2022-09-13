@@ -50,4 +50,4 @@ app.*.map.json
 #パスワードばれちゃう
 test/api_test.dart
 test/task_view_model_test.dart
-
+android/key.properties

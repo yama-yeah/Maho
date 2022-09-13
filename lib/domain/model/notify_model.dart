@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+
 part 'notify_model.freezed.dart';
 part 'notify_model.g.dart';
 

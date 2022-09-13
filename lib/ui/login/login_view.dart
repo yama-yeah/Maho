@@ -4,9 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:maho/ui/login/login_controller.dart';
 import 'package:maho/const/text_style.dart';
 import 'package:maho/domain/model/fun_model.dart';
+import 'package:maho/ui/login/login_controller.dart';
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);

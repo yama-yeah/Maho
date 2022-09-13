@@ -5,8 +5,8 @@ import 'package:maho/domain/apis/funapi/funapi_manager.dart';
 import 'package:maho/domain/data/secure_storage.dart';
 import 'package:maho/domain/db/course/course_dao.dart';
 import 'package:maho/domain/db/task/task_dao.dart';
-import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/domain/model/fun_model.dart';
+import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/domain/states/funapi_state.dart';
 import 'package:mockito/mockito.dart';
 

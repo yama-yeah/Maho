@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:maho/domain/data/shared_pref.dart';
 import 'package:maho/domain/model/notify_model.dart';
 import 'package:maho/domain/states/notification_state.dart';

@@ -1,14 +1,16 @@
+import 'dart:io';
+
 import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:maho/domain/db/course/course_table.dart';
 import 'package:maho/domain/db/task/task_table.dart';
 import 'package:maho/domain/model/task_model.dart';
-import 'dart:io';
-import 'package:drift/native.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:tuple/tuple.dart';
+
 part 'db.g.dart';
 
 @DriftDatabase(tables: [Tasks, Courses])

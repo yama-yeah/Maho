@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:maho/domain/db/course/course_table.dart';
 import 'package:maho/domain/db/db.dart';
 import 'package:maho/domain/model/task_model.dart';
+
 part 'course_dao.g.dart';
 
 @DriftAccessor(tables: [Courses])

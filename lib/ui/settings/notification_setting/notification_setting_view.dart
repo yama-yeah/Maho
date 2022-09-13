@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:maho/domain/states/notification_state.dart';
 import 'package:maho/utils/notification_util.dart';
 
 class NotificationSettingView extends HookConsumerWidget {
