@@ -17,7 +17,6 @@ class MyDatabase extends _$MyDatabase {
   @override
   int get schemaVersion => 1;
   Future<List<Tuple2<TaskModel, CourseModel>>> getJoinedApiData() {
-    final copyTasks = alias(tasks, 'copy');
     final query = select(tasks).join([
       //innerJoin(tasks, tasks.courseId.equalsExp(courses.id)),
       innerJoin(courses, courses.id.equalsExp(tasks.courseId)),
@@ -28,8 +27,6 @@ class MyDatabase extends _$MyDatabase {
   }
 
   Stream<List<Tuple2<TaskModel, CourseModel>>> streamJoinedApiData() {
-    final copyTasks = alias(tasks, 'copy');
-
     final query = select(tasks).join([
       //innerJoin(tasks, tasks.courseId.equalsExp(courses.id)),
       innerJoin(courses, courses.id.equalsExp(tasks.courseId)),

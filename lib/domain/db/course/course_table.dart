@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:drift/drift.dart';
-import 'package:flutter/foundation.dart';
 import 'package:maho/domain/model/task_model.dart';
 
 @UseRowClass(CourseModel)

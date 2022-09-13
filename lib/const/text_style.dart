@@ -16,7 +16,7 @@ final appTitleStyleProvider = Provider(
           Color(0xfa197cd7),
           Color(0xf9aeebff)
         ],
-      ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 100.0)),
+      ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 100.0)),
     //color: Colors.white,
   ),
 );

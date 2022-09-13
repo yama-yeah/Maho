@@ -12,7 +12,6 @@ import 'package:maho/ui/login/login_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maho/ui/settings/notification_setting/notification_setting_view.dart';
 import 'package:maho/ui/task/detail_task/detail_of_task_view.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:tuple/tuple.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -21,7 +20,7 @@ void main() {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   AwesomeNotifications().initialize(
       // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
+      null,
       [
         NotificationChannel(
             channelGroupKey: 'basic_channel_group',
@@ -62,34 +61,23 @@ class MyApp extends HookConsumerWidget {
       }
       FlutterNativeSplash.remove();
     }
+    useEffect(() {
+      AwesomeNotifications()
+          .actionStream
+          .listen((ReceivedNotification receivedNotification) {
+        /*Navigator.of(context).pushNamed('/NotificationPage', arguments: {
+        // your page params. I recommend you to pass the
+        // entire *receivedNotification* object
+        id: receivedNotification.id
+      });*/
+      });
+      return null;
+    }, []);
 
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        Alert(
-          context: context,
-          type: AlertType.info,
-          title: "通知",
-          desc: "通知を許可してください",
-          buttons: [
-            DialogButton(
-              onPressed: () =>
-                  AwesomeNotifications().requestPermissionToSendNotifications(),
-              width: 120,
-              child: const Text(
-                "OK",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            )
-          ],
-        ).show();
-      }
-    });
     //initialized!!!
 
     final GoRouter router = GoRouter(
-      initialLocation: '/notificationSetting',
-
-      //initialRoute.value,
+      initialLocation: initialRoute.value,
       routes: <GoRoute>[
         GoRoute(
           path: '/login',

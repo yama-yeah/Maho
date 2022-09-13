@@ -10,6 +10,7 @@ import 'package:maho/domain/db/db.dart';
 import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/domain/states/funapi_state.dart';
+import 'package:maho/utils/notification_util.dart';
 import 'package:tuple/tuple.dart';
 
 class TaskViewModel implements TaskViewModelInterface {
@@ -30,16 +31,20 @@ class TaskViewModel implements TaskViewModelInterface {
 }
 
 final tasksState = StateProvider<List<Tuple2<TaskModel, CourseModel>>>(
-    (ref) => ref.watch(dbStreamProvider).when(data: (data) {
-          Logger().i('loaded tasks $data');
-
-          return data;
-        }, error: (err, stk) {
-          return [];
-        }, loading: () {
-          Logger().i('loading tasks');
-          return [];
-        }));
+  (ref) {
+    final util = ref.watch(notificationUtilsProvider);
+    return ref.watch(dbStreamProvider).when(data: (data) {
+      Logger().i('loaded tasks $data');
+      util.createTaskNotifications(data);
+      return data;
+    }, error: (err, stk) {
+      return [];
+    }, loading: () {
+      Logger().i('loading tasks');
+      return [];
+    });
+  },
+);
 
 abstract class TaskViewModelInterface {
   Future<void> updateTasks(); //タスクの情報を更新

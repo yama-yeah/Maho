@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:maho/domain/data/shared_pref.dart';
+import 'package:maho/domain/model/notify_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final notificationStateNotifierProvider =
@@ -7,17 +9,21 @@ final notificationStateNotifierProvider =
   return NotificationStateNotifier(prefs);
 });
 
-class NotificationStateNotifier extends StateNotifier<int>
+class NotificationStateNotifier extends StateNotifier<NotificationDateModel>
     implements NotificationStateNotifierInterface {
   final SharedPreferences prefs;
-  NotificationStateNotifier(this.prefs) : super(prefs.getInt('notify') ?? 3);
+  NotificationStateNotifier(this.prefs)
+      : super(prefs.getString('notify') != null
+            ? NotificationDateModel.fromJson(
+                jsonDecode(prefs.getString('notify')!))
+            : const NotificationDateModel());
   @override
-  Future<void> setState(int data) async {
-    await prefs.setInt('notify', data);
+  Future<void> setState(NotificationDateModel data) async {
+    await prefs.setString('notify', const JsonEncoder().convert(data.toJson()));
     state = data;
   }
 }
 
 abstract class NotificationStateNotifierInterface {
-  Future<void> setState(int data);
+  Future<void> setState(NotificationDateModel data);
 }

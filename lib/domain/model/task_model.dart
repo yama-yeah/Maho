@@ -1,7 +1,5 @@
 import 'package:drift/drift.dart' as d;
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:maho/domain/db/db.dart';
 
 part 'task_model.freezed.dart';

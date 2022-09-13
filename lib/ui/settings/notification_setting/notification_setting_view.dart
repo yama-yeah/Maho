@@ -10,21 +10,37 @@ class NotificationSettingView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final util = ref.watch(notificationUtilsProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('通知設定'),
-      ),
-      body: TextField(
-        onSubmitted: (value) {
-          util.setState(int.parse(value));
-        },
-        decoration: InputDecoration(
-          labelText: '${util.state}時間前に通知',
+        appBar: AppBar(
+          title: const Text('通知設定'),
         ),
-        keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-        ],
-      ),
-    );
+        body: Column(
+          children: [
+            TextField(
+              onSubmitted: (value) {
+                util.setState(util.state.copyWith(hours: int.parse(value)));
+              },
+              decoration: InputDecoration(
+                labelText: '${util.state.hours}時間前に通知',
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+            ),
+            TextField(
+              onSubmitted: (value) async {
+                await util
+                    .setState(util.state.copyWith(days: int.parse(value)));
+              },
+              decoration: InputDecoration(
+                labelText: '${util.state.days}日前に通知',
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+            ),
+          ],
+        ));
   }
 }

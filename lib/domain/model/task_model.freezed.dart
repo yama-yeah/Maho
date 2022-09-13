@@ -176,7 +176,7 @@ class __$$_CourseModelCopyWithImpl<$Res> extends _$CourseModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CourseModel extends _CourseModel with DiagnosticableTreeMixin {
+class _$_CourseModel extends _CourseModel {
   const _$_CourseModel(
       {@JsonKey(name: 'fullname') this.fullName = '',
       @JsonKey(name: 'shortname') this.shortName = '',
@@ -212,22 +212,8 @@ class _$_CourseModel extends _CourseModel with DiagnosticableTreeMixin {
   final bool isTaskNotify;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CourseModel(fullName: $fullName, shortName: $shortName, isShortName: $isShortName, url: $url, summary: $summary, id: $id, isTaskNotify: $isTaskNotify)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CourseModel'))
-      ..add(DiagnosticsProperty('fullName', fullName))
-      ..add(DiagnosticsProperty('shortName', shortName))
-      ..add(DiagnosticsProperty('isShortName', isShortName))
-      ..add(DiagnosticsProperty('url', url))
-      ..add(DiagnosticsProperty('summary', summary))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('isTaskNotify', isTaskNotify));
   }
 
   @override
@@ -394,7 +380,7 @@ class __$$_CoursesModeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CoursesMode with DiagnosticableTreeMixin implements _CoursesMode {
+class _$_CoursesMode implements _CoursesMode {
   const _$_CoursesMode(
       {final Set<CourseModel> courses = const {}, this.status = 'loading'})
       : _courses = courses;
@@ -412,17 +398,8 @@ class _$_CoursesMode with DiagnosticableTreeMixin implements _CoursesMode {
   final String status;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'CoursesModel(courses: $courses, status: $status)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CoursesModel'))
-      ..add(DiagnosticsProperty('courses', courses))
-      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -621,7 +598,7 @@ class __$$_RawTaskModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_RawTaskModel with DiagnosticableTreeMixin implements _RawTaskModel {
+class _$_RawTaskModel implements _RawTaskModel {
   const _$_RawTaskModel(
       {required this.course,
       this.url = 'https://hope.fun.ac.jp/my/',
@@ -650,21 +627,8 @@ class _$_RawTaskModel with DiagnosticableTreeMixin implements _RawTaskModel {
   final int id;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RawTaskModel(course: $course, url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RawTaskModel'))
-      ..add(DiagnosticsProperty('course', course))
-      ..add(DiagnosticsProperty('url', url))
-      ..add(DiagnosticsProperty('endTime', endTime))
-      ..add(DiagnosticsProperty('startTime', startTime))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -828,7 +792,7 @@ class __$$_RawTasksModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
-class _$_RawTasksModel with DiagnosticableTreeMixin implements _RawTasksModel {
+class _$_RawTasksModel implements _RawTasksModel {
   const _$_RawTasksModel(
       {final List<RawTaskModel> tasks = const [], this.status = 'loading'})
       : _tasks = tasks;
@@ -849,17 +813,8 @@ class _$_RawTasksModel with DiagnosticableTreeMixin implements _RawTasksModel {
   final String status;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RawTasksModel(tasks: $tasks, status: $status)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RawTasksModel'))
-      ..add(DiagnosticsProperty('tasks', tasks))
-      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -1064,7 +1019,7 @@ class __$$_TaskModelCopyWithImpl<$Res> extends _$TaskModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskModel extends _TaskModel with DiagnosticableTreeMixin {
+class _$_TaskModel extends _TaskModel {
   const _$_TaskModel(
       {required this.url,
       required this.endTime,
@@ -1095,22 +1050,8 @@ class _$_TaskModel extends _TaskModel with DiagnosticableTreeMixin {
   final int courseId;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'TaskModel(url: $url, endTime: $endTime, startTime: $startTime, name: $name, id: $id, isNotify: $isNotify, courseId: $courseId)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'TaskModel'))
-      ..add(DiagnosticsProperty('url', url))
-      ..add(DiagnosticsProperty('endTime', endTime))
-      ..add(DiagnosticsProperty('startTime', startTime))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('isNotify', isNotify))
-      ..add(DiagnosticsProperty('courseId', courseId));
   }
 
   @override
@@ -1275,7 +1216,7 @@ class __$$_TasksModelCopyWithImpl<$Res> extends _$TasksModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TasksModel with DiagnosticableTreeMixin implements _TasksModel {
+class _$_TasksModel implements _TasksModel {
   const _$_TasksModel(
       {this.status = 'loading', final List<TaskModel> tasks = const []})
       : _tasks = tasks;
@@ -1295,17 +1236,8 @@ class _$_TasksModel with DiagnosticableTreeMixin implements _TasksModel {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'TasksModel(status: $status, tasks: $tasks)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'TasksModel'))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('tasks', tasks));
   }
 
   @override

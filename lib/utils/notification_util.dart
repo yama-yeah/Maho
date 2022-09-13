@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:maho/domain/data/shared_pref.dart';
+import 'package:maho/domain/model/notify_model.dart';
 import 'package:maho/domain/states/notification_state.dart';
+import 'package:maho/utils/date_util.dart';
 import 'package:tuple/tuple.dart';
 
 import '../domain/model/task_model.dart';
@@ -10,7 +14,7 @@ import '../domain/model/task_model.dart';
 abstract class NotificationUtilsInterface
     implements NotificationStateNotifierInterface {
   void createTaskNotifications(List<Tuple2<TaskModel, CourseModel>> data);
-  int get state;
+  NotificationDateModel get state;
 }
 
 class FakeNotificationUtils implements NotificationUtilsInterface {
@@ -18,27 +22,37 @@ class FakeNotificationUtils implements NotificationUtilsInterface {
   void createTaskNotifications(List<Tuple2<TaskModel, CourseModel>> data) {}
 
   @override
-  get state => -1;
+  get state => const NotificationDateModel();
 
   @override
-  Future<void> setState(int data) {
+  Future<void> setState(NotificationDateModel data) {
     // TODO: implement setState
     throw UnimplementedError();
   }
 }
 
 class NotificationUtils implements NotificationUtilsInterface {
-  NotificationStateNotifierInterface stateNotifier;
+  final NotificationStateNotifierInterface stateNotifier;
   final awesomeNotifications = AwesomeNotifications();
-  final int _state;
+  final NotificationDateModel _state;
   NotificationUtils(this.stateNotifier, this._state);
+
+  NotificationSchedule makeSchedule(
+      NotificationDateModel model, DateTime date) {
+    //
+    return NotificationCalendar.fromDate(
+        date: date.subtract(model.toDuration()));
+  }
+
   void createTaskNotification(Tuple2<TaskModel, CourseModel> element) {
     awesomeNotifications.createNotification(
-        content: NotificationContent(
-            id: element.item1.id,
-            channelKey: 'basic_channel',
-            title: element.item1.name,
-            body: 'Simple body'));
+      content: NotificationContent(
+          id: element.item1.id,
+          channelKey: 'tasks_channel',
+          title: element.item1.name,
+          body: '締め切り${state.hours}時間前です'),
+      schedule: makeSchedule(state, unixTime2Date(element.item1.endTime)),
+    );
   }
 
   @override
@@ -49,7 +63,7 @@ class NotificationUtils implements NotificationUtilsInterface {
   }
 
   @override
-  Future<void> setState(int data) async {
+  Future<void> setState(NotificationDateModel data) async {
     await stateNotifier.setState(data);
   }
 
@@ -62,8 +76,7 @@ final notificationUtilsFutureProvider = FutureProvider((ref) async {
   final stateNotifier =
       ref.watch(notificationStateNotifierProvider(prefs).notifier);
   final state = ref.watch(notificationStateNotifierProvider(prefs));
-  Logger().wtf('omg');
-  return NotificationUtils(stateNotifier, state as int);
+  return NotificationUtils(stateNotifier, state as NotificationDateModel);
 });
 
 final notificationUtilsProvider = Provider((ref) {
