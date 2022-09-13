@@ -32,7 +32,7 @@ class LoginView extends HookConsumerWidget {
           body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/login_bg.jpg'),
+            image: AssetImage('assets/images/login_bg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -93,7 +93,7 @@ class LoginView extends HookConsumerWidget {
                   child: GlassContainer(
                     width: 250,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: TextField(
                         autofillHints: const [AutofillHints.password],
                         obscureText: hiddenPassword.value,

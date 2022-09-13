@@ -4,7 +4,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:maho/domain/apis/funapi/funapi_manager.dart';
+import 'package:maho/domain/db/db.dart';
+import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/task_model.dart';
 import 'package:maho/domain/states/funapi_state.dart';
 import 'package:maho/ui/home/home_view.dart';
@@ -61,18 +64,6 @@ class MyApp extends HookConsumerWidget {
       }
       FlutterNativeSplash.remove();
     }
-    useEffect(() {
-      AwesomeNotifications()
-          .actionStream
-          .listen((ReceivedNotification receivedNotification) {
-        /*Navigator.of(context).pushNamed('/NotificationPage', arguments: {
-        // your page params. I recommend you to pass the
-        // entire *receivedNotification* object
-        id: receivedNotification.id
-      });*/
-      });
-      return null;
-    }, []);
 
     //initialized!!!
 
@@ -115,17 +106,18 @@ class MyApp extends HookConsumerWidget {
       },
     );
     return GlassApp(
+        theme: GlassThemeData(blur: 9),
         home: MaterialApp.router(
-      title: 'Maho',
-      theme: ThemeData.light(),
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
-      builder: EasyLoading.init(),
-      darkTheme: ThemeData.dark().copyWith(
-        textTheme: const TextTheme()
-            .apply(displayColor: Colors.grey, bodyColor: Colors.grey),
-      ),
-    ));
+          title: 'Maho',
+          theme: ThemeData.light(),
+          routeInformationProvider: router.routeInformationProvider,
+          routeInformationParser: router.routeInformationParser,
+          routerDelegate: router.routerDelegate,
+          builder: EasyLoading.init(),
+          darkTheme: ThemeData.dark().copyWith(
+            textTheme: const TextTheme()
+                .apply(displayColor: Colors.grey, bodyColor: Colors.grey),
+          ),
+        ));
   }
 }

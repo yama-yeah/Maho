@@ -26,6 +26,16 @@ class MyDatabase extends _$MyDatabase {
         .get();
   }
 
+  Future<Tuple2<TaskModel, CourseModel>> getJoinedSingleApiData(int id) {
+    final query = select(tasks).join([
+      //innerJoin(tasks, tasks.courseId.equalsExp(courses.id)),
+      innerJoin(courses, courses.id.equalsExp(tasks.courseId)),
+    ]);
+    return (query..where(tasks.id.equals(id)))
+        .map((p0) => Tuple2(p0.readTable(tasks), p0.readTable(courses)))
+        .getSingle();
+  }
+
   Stream<List<Tuple2<TaskModel, CourseModel>>> streamJoinedApiData() {
     final query = select(tasks).join([
       //innerJoin(tasks, tasks.courseId.equalsExp(courses.id)),

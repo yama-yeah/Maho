@@ -45,20 +45,47 @@ class NotificationUtils implements NotificationUtilsInterface {
   }
 
   void createTaskNotification(Tuple2<TaskModel, CourseModel> element) {
-    awesomeNotifications.createNotification(
-      content: NotificationContent(
-          id: element.item1.id,
-          channelKey: 'tasks_channel',
-          title: element.item1.name,
-          body: '締め切り${state.hours}時間前です'),
-      schedule: makeSchedule(state, unixTime2Date(element.item1.endTime)),
-    );
+    final endTime = unixTime2Date(element.item1.endTime);
+    final now = DateTime.now();
+    if (endTime.subtract(state.toDuration()).compareTo(now) == -1) {
+      final diff = endTime.difference(now);
+      if (diff.inDays > 0) {
+        awesomeNotifications.createNotification(
+          content: NotificationContent(
+              id: element.item1.id,
+              channelKey: 'tasks_channel',
+              title: element.item1.name,
+              body: '締め切り${diff.inDays}日前です'),
+        );
+      } else {
+        awesomeNotifications.createNotification(
+          content: NotificationContent(
+              id: element.item1.id,
+              channelKey: 'tasks_channel',
+              title: element.item1.name,
+              body: '締め切り${diff.inHours}時間前です'),
+        );
+      }
+    } else {
+      awesomeNotifications.createNotification(
+        content: NotificationContent(
+            id: element.item1.id,
+            channelKey: 'tasks_channel',
+            title: element.item1.name,
+            body: state.days > 0
+                ? '締め切り${state.days}日前です'
+                : '締め切り${state.hours}時間前です'),
+        schedule: makeSchedule(state, endTime),
+      );
+    }
   }
 
   @override
   void createTaskNotifications(List<Tuple2<TaskModel, CourseModel>> data) {
     for (var element in data) {
-      createTaskNotification(element);
+      if (element.item1.isNotify && element.item2.isTaskNotify) {
+        createTaskNotification(element);
+      }
     }
   }
 

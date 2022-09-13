@@ -1,5 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 
 DateTime unixTime2Date(int time) {
   return DateTime.fromMillisecondsSinceEpoch(time * 1000);

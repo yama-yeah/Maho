@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class DetailOfTaskView extends HookConsumerWidget {
   final t.Tuple2<TaskModel, CourseModel> data;
-  DetailOfTaskView(this.data);
+  const DetailOfTaskView(this.data, {super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final task = data.item1;
@@ -20,7 +20,6 @@ class DetailOfTaskView extends HookConsumerWidget {
     final isNotifyByTaskModel = useState(task.isNotify); //この画面で可変する値を全部Hookで扱う
     //final isNotifyByCourseModel = useState(course.isTaskNotify);
     final tasksDao = ref.read(tasksDaoProvider);
-    print(task.endTime);
 
     final rowChildren = [
       ...isNotifyByTaskModel.value

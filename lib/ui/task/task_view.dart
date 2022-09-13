@@ -36,6 +36,9 @@ class TaskView extends HookConsumerWidget {
     for (var item in viewModel.state) {
       tiles.add(TaskListTile(item.item1, item.item2));
     }
+    tiles.add(Container(
+      padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight + 10),
+    ));
     final appBarTextStyle = ref.read(appBarTextStyleProvider);
     return Scaffold(
       appBar: GlassAppBar(
@@ -44,15 +47,23 @@ class TaskView extends HookConsumerWidget {
           style: appBarTextStyle,
         ),
       ),
-      body: SmartRefresher(
-        enablePullDown: true,
-        header: const WaterDropHeader(),
-        controller: _refreshController,
-        child: ListView(children: tiles.toList()),
-        onRefresh: () async {
-          await viewModel.updateTasks();
-          _refreshController.refreshCompleted();
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (overscroll) {
+          overscroll.disallowIndicator();
+          return true;
         },
+        child: SmartRefresher(
+          enablePullDown: true,
+          header: const WaterDropHeader(),
+          controller: _refreshController,
+          child: ListView(
+            children: tiles.toList(),
+          ),
+          onRefresh: () async {
+            await viewModel.updateTasks();
+            _refreshController.refreshCompleted();
+          },
+        ),
       ),
       backgroundColor: Colors.transparent,
     );
