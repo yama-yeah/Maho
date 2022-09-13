@@ -44,8 +44,11 @@ class NotificationUtils implements NotificationUtilsInterface {
   void createTaskNotification(Tuple2<TaskModel, CourseModel> element) {
     final endTime = unixTime2Date(element.item1.endTime);
     final now = DateTime.now();
-    if (endTime.subtract(state.toDuration()).compareTo(now) == -1) {
+    if (endTime.subtract(state.toDuration()).compareTo(now) == -1 &&
+        !state.notifiedIds.contains(element.item1.id)) {
       final diff = endTime.difference(now);
+      stateNotifier.setState(state
+          .copyWith(notifiedIds: [..._state.notifiedIds, element.item1.id]));
       if (diff.inDays > 0) {
         awesomeNotifications.createNotification(
           content: NotificationContent(

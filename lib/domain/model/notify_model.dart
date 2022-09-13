@@ -8,6 +8,7 @@ class NotificationDateModel with _$NotificationDateModel {
   const factory NotificationDateModel({
     @Default(3) int hours,
     @Default(0) int days,
+    @Default([]) List<int> notifiedIds,
   }) = _NotificationDateModel;
   const NotificationDateModel._();
   factory NotificationDateModel.fromJson(Map<String, dynamic> json) =>

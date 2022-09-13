@@ -23,6 +23,7 @@ NotificationDateModel _$NotificationDateModelFromJson(
 mixin _$NotificationDateModel {
   int get hours => throw _privateConstructorUsedError;
   int get days => throw _privateConstructorUsedError;
+  List<int> get notifiedIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $NotificationDateModelCopyWith<$Res> {
   factory $NotificationDateModelCopyWith(NotificationDateModel value,
           $Res Function(NotificationDateModel) then) =
       _$NotificationDateModelCopyWithImpl<$Res>;
-  $Res call({int hours, int days});
+  $Res call({int hours, int days, List<int> notifiedIds});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$NotificationDateModelCopyWithImpl<$Res>
   $Res call({
     Object? hours = freezed,
     Object? days = freezed,
+    Object? notifiedIds = freezed,
   }) {
     return _then(_value.copyWith(
       hours: hours == freezed
@@ -61,6 +63,10 @@ class _$NotificationDateModelCopyWithImpl<$Res>
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
               as int,
+      notifiedIds: notifiedIds == freezed
+          ? _value.notifiedIds
+          : notifiedIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -72,7 +78,7 @@ abstract class _$$_NotificationDateModelCopyWith<$Res>
           $Res Function(_$_NotificationDateModel) then) =
       __$$_NotificationDateModelCopyWithImpl<$Res>;
   @override
-  $Res call({int hours, int days});
+  $Res call({int hours, int days, List<int> notifiedIds});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$_NotificationDateModelCopyWithImpl<$Res>
   $Res call({
     Object? hours = freezed,
     Object? days = freezed,
+    Object? notifiedIds = freezed,
   }) {
     return _then(_$_NotificationDateModel(
       hours: hours == freezed
@@ -101,6 +108,10 @@ class __$$_NotificationDateModelCopyWithImpl<$Res>
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
               as int,
+      notifiedIds: notifiedIds == freezed
+          ? _value._notifiedIds
+          : notifiedIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -108,7 +119,10 @@ class __$$_NotificationDateModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_NotificationDateModel extends _NotificationDateModel {
-  const _$_NotificationDateModel({this.hours = 3, this.days = 0}) : super._();
+  const _$_NotificationDateModel(
+      {this.hours = 3, this.days = 0, final List<int> notifiedIds = const []})
+      : _notifiedIds = notifiedIds,
+        super._();
 
   factory _$_NotificationDateModel.fromJson(Map<String, dynamic> json) =>
       _$$_NotificationDateModelFromJson(json);
@@ -119,10 +133,17 @@ class _$_NotificationDateModel extends _NotificationDateModel {
   @override
   @JsonKey()
   final int days;
+  final List<int> _notifiedIds;
+  @override
+  @JsonKey()
+  List<int> get notifiedIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notifiedIds);
+  }
 
   @override
   String toString() {
-    return 'NotificationDateModel(hours: $hours, days: $days)';
+    return 'NotificationDateModel(hours: $hours, days: $days, notifiedIds: $notifiedIds)';
   }
 
   @override
@@ -131,7 +152,9 @@ class _$_NotificationDateModel extends _NotificationDateModel {
         (other.runtimeType == runtimeType &&
             other is _$_NotificationDateModel &&
             const DeepCollectionEquality().equals(other.hours, hours) &&
-            const DeepCollectionEquality().equals(other.days, days));
+            const DeepCollectionEquality().equals(other.days, days) &&
+            const DeepCollectionEquality()
+                .equals(other._notifiedIds, _notifiedIds));
   }
 
   @JsonKey(ignore: true)
@@ -139,7 +162,8 @@ class _$_NotificationDateModel extends _NotificationDateModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(hours),
-      const DeepCollectionEquality().hash(days));
+      const DeepCollectionEquality().hash(days),
+      const DeepCollectionEquality().hash(_notifiedIds));
 
   @JsonKey(ignore: true)
   @override
@@ -156,8 +180,10 @@ class _$_NotificationDateModel extends _NotificationDateModel {
 }
 
 abstract class _NotificationDateModel extends NotificationDateModel {
-  const factory _NotificationDateModel({final int hours, final int days}) =
-      _$_NotificationDateModel;
+  const factory _NotificationDateModel(
+      {final int hours,
+      final int days,
+      final List<int> notifiedIds}) = _$_NotificationDateModel;
   const _NotificationDateModel._() : super._();
 
   factory _NotificationDateModel.fromJson(Map<String, dynamic> json) =
@@ -167,6 +193,8 @@ abstract class _NotificationDateModel extends NotificationDateModel {
   int get hours;
   @override
   int get days;
+  @override
+  List<int> get notifiedIds;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationDateModelCopyWith<_$_NotificationDateModel> get copyWith =>

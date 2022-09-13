@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:maho/domain/apis/funapi/funapi_domain.dart';
@@ -7,6 +9,7 @@ import 'package:maho/domain/db/course/course_dao.dart';
 import 'package:maho/domain/db/task/task_dao.dart';
 import 'package:maho/domain/model/fun_model.dart';
 import 'package:maho/domain/states/funapi_state.dart';
+import 'package:maho/utils/date_util.dart';
 import 'package:maho/utils/service_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,7 +56,26 @@ class FunApiManager implements FunApiManagerInterface {
     Logger().wtf('now updating');
     final user = _ref.read(funApiUserStateProvider);
     final rawTasks = await _api.getTasks(user);
-
+    final old = await _tasksDao.getTasks();
+    final tasksIds = [];
+    //終わったタスクを削除
+    for (var element in rawTasks.tasks) {
+      tasksIds.add(element.id);
+    }
+    for (var element in old) {
+      bool f = true;
+      if (!tasksIds.contains(element.id)) {
+        _tasksDao.deleteTask(element.id);
+      } else if (unixTime2Date(element.endTime).compareTo(DateTime.now()) ==
+          -1) {
+        _tasksDao.deleteTask(element.id);
+      } else {
+        f = !f;
+      }
+      if (f) {
+        Logger().wtf('deleted task! id is ${element.id}');
+      }
+    }
     //courseこみのtaskを取得
     for (var rawTask in rawTasks.tasks) {
       final task = raw2task(rawTask);

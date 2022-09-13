@@ -17,12 +17,14 @@ class TasksDao extends DatabaseAccessor<MyDatabase>
   @override
   Future<int> upsertTask(TaskModel entity) =>
       into(tasks).insertOnConflictUpdate(entity);
+  @override
   Future<List<TaskModel>> getTasks() => select(tasks).get();
   @override
   Future<TaskModel> getTask(int id) =>
       (select(tasks)..where((tbl) => tbl.id.equals(id))).getSingle();
   //Future<List<TaskModel>> getTasks() => select(tasks).get();
 
+  @override
   Future<void> deleteTask(int id) =>
       (delete(tasks)..where((tbl) => tbl.id.equals(id))).go();
 
@@ -47,6 +49,8 @@ abstract class TasksDaoInterface {
   Future<int> upsertTask(TaskModel entity);
   Future<TaskModel> getTask(int id);
   Future insertTask(TaskModel entity);
+  Future<List<TaskModel>> getTasks();
+  Future<void> deleteTask(int id);
 }
 
 final tasksDaoProvider = Provider((ref) => TasksDao(ref.read(dbProvider)));
