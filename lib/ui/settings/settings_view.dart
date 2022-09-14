@@ -33,6 +33,17 @@ class SettingsView extends ConsumerWidget {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: GlassButton(
+            onPressed: () {
+              context.push('/login');
+            },
+            child: Row(
+              children: const [GlassIcon(Icons.login), GlassText('再ログイン')],
+            ),
+          ),
+        ),
       ]),
     );
   }
