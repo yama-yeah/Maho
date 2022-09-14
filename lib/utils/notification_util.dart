@@ -98,15 +98,19 @@ class NotificationUtils implements NotificationUtilsInterface {
   get state => _state;
 }
 
-final notificationUtilsFutureProvider = FutureProvider((ref) async {
-  final prefs = await ref.watch(getPrefInstanceProvider.future);
+final notificationUtilsProvider = Provider((ref) {
+  final prefs = ref.watch(getPrefInstanceProvider).value;
+  if (prefs == null) {
+    return FakeNotificationUtils();
+  }
   final stateNotifier =
-      ref.watch(notificationStateNotifierProvider(prefs).notifier);
+      ref.read(notificationStateNotifierProvider(prefs).notifier);
   final state = ref.watch(notificationStateNotifierProvider(prefs));
   return NotificationUtils(stateNotifier, state as NotificationDateModel);
 });
-
+/*
 final notificationUtilsProvider = Provider((ref) {
   return ref.watch(notificationUtilsFutureProvider).value ??
       FakeNotificationUtils();
 });
+*/
