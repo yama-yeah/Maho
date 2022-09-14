@@ -65,7 +65,9 @@ class DetailOfTaskView extends HookConsumerWidget {
               throw 'Could not launch ${task.url}';
             }
           },
-          child: Text(task.url)),
+          child: Text(
+            task.url,
+          )),
       const Divider(
         height: 20,
         thickness: 1.5,
