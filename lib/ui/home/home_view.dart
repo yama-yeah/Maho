@@ -15,7 +15,8 @@ import '../../domain/db/db.dart';
 class HomeView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screens = <Widget>[TaskView(), const SettingsView()];
+    // ignore: prefer_const_constructors
+    final screens = <Widget>[TaskView(), SettingsView()];
     final decorations = <BoxDecoration?>[
       BoxDecoration(
         image: DecorationImage(
